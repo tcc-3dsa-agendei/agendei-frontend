@@ -29,10 +29,8 @@
 
 .lineBaixo{
     position: absolute;
-
     bottom: 20px;
     right: 0px;
-
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -41,11 +39,8 @@
 .lineBaixo span{
     width: 510px;
     height: 3px;
-
     background-color: var(--cor-primaria1);
-
     border-radius: 10px;
-
     opacity: 0.75;
 }
 
@@ -59,6 +54,19 @@
 }
 
 .leftSide{
+    width: 65%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        var(--cor-secundaria1) 50%,
+        var(--cor-secundaria2) 100%
+    );
+    border-radius:  25px 0 0 25px;
+
+    position: relative;
+}
+
+.rightSide{
     width: 35%;
     height: 100%;
     background: linear-gradient(
@@ -67,33 +75,20 @@
         var(--cor-primaria3) 100%
     );
 
-    border-radius: 25px 0 0 25px;
+    border-radius: 0 25px 25px 0;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.rightSide{
-    width: 65%;
-    height: 100%;
-    background: linear-gradient(
-        45deg,
-        var(--cor-secundaria1) 50%,
-        var(--cor-secundaria2) 100%
-    );
-    border-radius:  0 25px 25px 0;
-
-    position: relative;
 }   
 
-.leftContent{
+.rightContent{
     text-align: center;
     color: var(--cor-secundaria1);
     font-size: var(--texto-sm);
     font-weight: var(--peso-regular);
 }
 
-.leftContent h1{
+.rightContent h1{
     font-size: var(--titulo-sm);
     font-weight: var(--peso-semibold);
 }
@@ -105,13 +100,13 @@
     margin: 30px auto;
 }
 
-.leftContent p{
+.rightContent p{
     max-width: 300px;
     line-height: 1.7;
     margin-bottom: 40px;
 }
 
-.leftContent button{
+.rightContent button{
     padding: 15px 40px;
     border: none;
     border-radius: 15px;
@@ -121,7 +116,7 @@
     cursor: pointer;
 }
 
-.leftContent button:hover{
+.rightContent button:hover{
     background-color: var(--cor-secundaria2);
     transform: scale(1.02);
 
@@ -133,38 +128,49 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     font-size: var(--texto-sm);
     font-weight: var(--peso-regular);
 
 }
 
 .formContainer h1{
-    font-size: var(--titulo-md);
+    font-size: var(--titulo-sm);
     font-weight: var(--peso-bold);
+    margin-top: -15px;
 }
 
 .formContainer p{
     font-size: var(--texto-sm);
     font-weight: var(--peso-regular);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .formContainer input[type="text"],
-.formContainer input[type="password"]{
-    width: 400px;
-    padding: 15px;
+.formContainer input[type="password"],
+.formContainer input[type="email"],
+.formContainer input[type="number"],
+.formContainer input[type="date"]
+{
+    width: 260px;
+    padding: 5px;
     border: none;
     background-color: var(--cor-secundaria2);
-    border-radius: 10px;
-    
+    border-radius: 8px;
+    font-size: var(--texto-pq);
+    margin-bottom: 2px;
 }
 
 .formContainer input[type="text"]:focus,
-.formContainer input[type="password"]:focus{
+.formContainer input[type="password"]:focus,
+.formContainer input[type="email"]:focus,
+.formContainer input[type="number"]:focus,
+.formContainer input[type="date"]:focus
+{
     outline: none;
     box-shadow: 0 0 3px var(--cor-secundaria4);
     color: var(--cor-terciaria);
+    font-size: var(--texto-pq);
 }
 
 .formContainer input[type="text"]::placeholder,
@@ -173,23 +179,22 @@
 .formContainer input[type="number"]::placeholder,
 .formContainer input[type="date"]::placeholder
 {
-    font-size: var(--texto-sm);
+    font-size: var(--texto-pq);
     font-weight: var(--peso-regular);
     padding: 8px;
 }
 
 .formContainer button{
-    width: 250px;
-    padding: 15px;
+    width: 170px;
+    padding: 10px;
     border: none;
     border-radius: 15px;
     background-color: var(--cor-primaria1);
     color: var(--cor-secundaria1);
     font-weight: var(--peso-semibold);
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 30px;
 }
-
 
 .formContainer button:hover{
     background-color: var(--cor-primaria2);
@@ -211,21 +216,19 @@
 
 }
 
-.password{
-
-    font-size: var(--texto-pq   );
-    font-weight: var(--peso-medium);
-    color: var(--cor-primaria1);
-    text-decoration: none;
-    transition: 0.2s ease;
-}
-
 .logo{
     position: absolute;
     top: 15px;
-    left: 20px;
+    right: 20px;
     font-size: var(--titulo-pq);
     font-weight: var(--peso-bold);
     color: var(--cor-primaria1);
     cursor: default;
+}
+
+.inputsGrid{
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 70px;
 }

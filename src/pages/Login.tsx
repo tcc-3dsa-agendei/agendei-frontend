@@ -6,6 +6,10 @@ export function Login(){
 
         <div className={styles.container}>
 
+            <div className={styles.lineTopo}>
+                <span></span>
+            </div>
+
             <div className={styles.card}>
 
                 <div className={styles.leftSide}>
@@ -31,6 +35,10 @@ export function Login(){
                 </div>
 
                 <div className={styles.rightSide}>
+
+                    <h2 className={styles.logo}>
+                        Agendei.com
+                    </h2>
 
                     <div className={styles.formContainer}>
 
@@ -59,12 +67,15 @@ export function Login(){
                             Fazer Login
                         </button>
 
-                        <a href="#">
+                        <a href="#" className={styles.password}>
                             Esqueci a Senha
                         </a>
 
                     </div>
                 </div>
+            </div>
+            <div className={styles.lineBaixo}>
+                <span></span>
             </div>
         </div>
     )

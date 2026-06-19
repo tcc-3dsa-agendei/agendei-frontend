@@ -1,8 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
 
-  --cor-primaria-1: #186C66;
-  --cor-primaria-2: #135853;
-  --cor-primaria-3: #094743;
-  --cor-primaria-4: #083734;
+  --cor-primaria1: #1A726C;
+  --cor-primaria2: #15635E;
+  --cor-primaria3: #0B4F4A;
+  --cor-primaria4: #083734;
+  --cor-secundaria1: #FDFDFD;
+  --cor-secundaria2: #E9E9E9;
+  --cor-secundaria3: #B9B9B9;
+  --cor-secundaria4: #959595;
+  --cor-secundaria5: #737373;
+  --cor-terciaria: #010101;
 
+  --font: "Poppins", sans-serif;
+  --peso-light: 300;
+  --peso-regular: 400;
+  --peso-medium: 500;
+  --peso-semibold: 600;
+  --peso-bold: 700;
+
+  --texto-pq: 0.70rem;
+  --texto-sm: 0.850rem;
+  --texto-md: 1rem;
+  --texto-sg: 1.125rem;
+  --texto-gd: 1.25rem; 
+
+  --titulo-sm: 1.5rem;
+  --titulo-md: 2rem;
+  --titulo-gd: 2.5rem;
+
+  --logo-sm: 3rem;
+  --logo-md: 4rem;
+  --logo-gd: 6rem;
+  
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
