@@ -1,0 +1,342 @@
+/* ===========================================================
+   Home.module.css
+   Estilos da página inicial (Home) do Agendei.com
+   =========================================================== */
+
+.page {
+  display: flex;
+  min-height: 100vh;
+  background-color: #ffffff;
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+  color: #1a1a1a;
+}
+
+/* ---------------------------------------------------------
+   SIDEBAR (menu lateral fixo)
+--------------------------------------------------------- */
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background-color: #1b4d47; /* verde-petróleo escuro da identidade visual */
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 20px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #d9e6e3;
+  text-decoration: none;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  transition: background-color 0.15s ease;
+}
+
+.navItem:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Item ativo (Home), destacado com fundo mais claro */
+.navItemActive {
+  composes: navItem;
+  background-color: #2f6f63;
+  color: #ffffff;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* Bloco de usuário fixado na parte inferior do sidebar */
+.userBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  flex-shrink: 0;
+}
+
+.userName {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.userEmail {
+  font-size: 11px;
+  color: #b9cdc8;
+}
+
+/* ---------------------------------------------------------
+   CONTEÚDO PRINCIPAL
+--------------------------------------------------------- */
+.main {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* ----- Hero (seção de boas-vindas) ----- */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 24px;
+  padding: 56px 64px 40px;
+}
+
+.eyebrow {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1b4d47;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #111111;
+  margin-bottom: 16px;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555555;
+  max-width: 460px;
+  margin-bottom: 28px;
+}
+
+.ctaGroup {
+  display: flex;
+  gap: 12px;
+}
+
+.btnPrimary {
+  background-color: #1b4d47;
+  color: #ffffff;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btnPrimary:hover {
+  background-color: #163e39;
+}
+
+.btnSecondary {
+  background-color: #eef1f0;
+  color: #1a1a1a;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btnSecondary:hover {
+  background-color: #e0e4e3;
+}
+
+.heroImageWrapper {
+  position: relative;
+}
+
+.heroImage {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+  object-fit: cover;
+}
+
+/* Pequeno detalhe decorativo (blocos verdes) embaixo da imagem,
+   conforme aparece no protótipo do Figma */
+.heroAccent {
+  position: absolute;
+  bottom: -14px;
+  left: -16px;
+  display: flex;
+  gap: 4px;
+}
+
+.heroAccent span {
+  width: 18px;
+  height: 18px;
+  background-color: #1b4d47;
+}
+
+.heroAccent span:nth-child(2) {
+  opacity: 0.6;
+}
+
+/* ----- Seção "Principais Funcionalidades" ----- */
+.featuresSection {
+  padding: 32px 64px 16px;
+  text-align: center;
+}
+
+.featuresTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 24px;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.featureCard {
+  text-align: left;
+  padding: 18px;
+}
+
+.featureIcon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background-color: #1b4d47;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.featureIcon svg {
+  width: 18px;
+  height: 18px;
+  color: #ffffff;
+}
+
+.featureTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1b4d47;
+  margin-bottom: 6px;
+}
+
+.featureText {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+/* ----- Rodapé com destaque + assinatura da marca ----- */
+.footerSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 8px 64px 56px;
+}
+
+.footerCard {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.footerIcon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #e2e2e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.footerIcon svg {
+  width: 16px;
+  height: 16px;
+  color: #1b4d47;
+}
+
+.footerCardTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 4px;
+}
+
+.footerCardText {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+.brandQuote {
+  font-size: 12px;
+  font-style: italic;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.brandName {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 4px;
+}
+
+/* ---------------------------------------------------------
+   RESPONSIVIDADE BÁSICA
+   (ajustes finos virão em arquivos de breakpoints à parte,
+   conforme combinado)
+--------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .hero,
+  .featuresGrid,
+  .footerSection {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+  }
+}
