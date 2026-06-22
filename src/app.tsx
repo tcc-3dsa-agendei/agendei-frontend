@@ -1,6 +1,7 @@
-//import { Login } from './pages/Login' 
-import { Home } from './pages/Home'; // troca o nome do import
+import { About } from './pages/About';
 
 export function App() {
-  return <Home />; // troca o componente usado aqui
+  return <About />;
 }
+
+export default App;
