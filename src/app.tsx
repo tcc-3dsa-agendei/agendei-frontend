@@ -1,9 +1,6 @@
-
-
-import Home from './pages/Home';
+//import { Login } from './pages/Login' 
+import { SetupNavigation } from './routes/Routes'; // Rotas
 
 export function App() {
-  return <Home />;
+  return <SetupNavigation />; 
 }
-
-export default App;
