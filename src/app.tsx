@@ -1,7 +1,9 @@
-import { About } from './pages/About';
+
+
+import Home from './pages/Home';
 
 export function App() {
-  return <About />;
+  return <Home />;
 }
 
 export default App;

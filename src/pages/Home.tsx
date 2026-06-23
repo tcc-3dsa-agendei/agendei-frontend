@@ -1,4 +1,5 @@
 import styles from './Home.module.css';
+import { MainLayout } from '../layout/MainLayout'
 
 // ===========================================================
 // Home.tsx
@@ -9,15 +10,6 @@ import styles from './Home.module.css';
 
 // Ícones simples em SVG inline, evitando dependência externa de
 // bibliotecas de ícones (mantém o componente autocontido)
-function IconHome() {
-  return (
-    <svg className={styles.icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M3 11.5 12 4l9 7.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M5 10v10h14V10" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 function IconCalendar() {
   return (
     <svg className={styles.icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -38,17 +30,7 @@ function IconUsers() {
   );
 }
 
-function IconSettings() {
-  return (
-    <svg className={styles.icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <circle cx="12" cy="12" r="3" />
-      <path
-        d="M19.4 13a7.6 7.6 0 0 0 0-2l2-1.5-2-3.4-2.4 1a7.6 7.6 0 0 0-1.7-1L15 3h-4l-.3 2.6a7.6 7.6 0 0 0-1.7 1l-2.4-1-2 3.4L6.6 11a7.6 7.6 0 0 0 0 2l-2 1.5 2 3.4 2.4-1a7.6 7.6 0 0 0 1.7 1L11 21h4l.3-2.6a7.6 7.6 0 0 0 1.7-1l2.4 1 2-3.4-2-1.5Z"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
+
 
 function IconBarChart() {
   return (
@@ -105,44 +87,10 @@ const features = [
 
 export function Home() {
   return (
+    <MainLayout>
+
     <div className={styles.page}>
-      {/* ----------------------- SIDEBAR ----------------------- */}
-      <aside className={styles.sidebar}>
-        <div>
-          <div className={styles.logo}>Agendei.com</div>
 
-          <nav className={styles.nav}>
-            {/* O item "Home" representa a rota ativa nesta página */}
-            <button className={styles.navItemActive} type="button">
-              <IconHome />
-              Home
-            </button>
-            <button className={styles.navItem} type="button">
-              <IconCalendar />
-              Agendas
-            </button>
-            <button className={styles.navItem} type="button">
-              <IconUsers />
-              Clientes
-            </button>
-            <button className={styles.navItem} type="button">
-              <IconSettings />
-              Configurações
-            </button>
-          </nav>
-        </div>
-
-        {/* Bloco fixo do usuário logado, na base do sidebar */}
-        <div className={styles.userBox}>
-          <div className={styles.avatar} />
-          <div>
-            <div className={styles.userName}>Dom Comédia</div>
-            <div className={styles.userEmail}>dcomedia@email.com</div>
-          </div>
-        </div>
-      </aside>
-
-      {/* -------------------- CONTEÚDO PRINCIPAL -------------------- */}
       <main className={styles.main}>
         {/* ----- Seção Hero (apresentação inicial) ----- */}
         <section className={styles.hero}>
@@ -224,6 +172,7 @@ export function Home() {
         </section>
       </main>
     </div>
+    </MainLayout>
   );
 }
 

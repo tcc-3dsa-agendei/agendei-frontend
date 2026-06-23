@@ -56,7 +56,6 @@
 }
 
 .navItemActive {
-  composes: navItem;
   background-color: #2f6f63;
   color: #ffffff;
 }
