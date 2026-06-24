@@ -1,9 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 //Coloque os importes das páginas conforme vocês forem adicionando/criando
 //EX:
-import { Login } from "../pages/Login"
+//import { Login } from "../pages/Login"
 import { Home } from "../pages/Home"
+import { Login } from "../pages/Login";
 import { Register } from "../pages/Register"
+import { HeroSection } from "../pages/HeroSection";
+
 
 
 export function SetupNavigation() {
@@ -11,15 +14,11 @@ export function SetupNavigation() {
         <BrowserRouter>
             <Routes>
 
-                <Route path='/' element={ <Login/>} />
-
-                <Route path='Home' element={ <Home/> }>
-                    {/*Colocar todas as páginas que possuem o menu
-                    EX:*/}
-                    {/*<Route path='Profile' element={ <Profile/> }/>*/}
-                    <Route path='Register' element={ <Register/> }/>
-
-                </Route>
+                <Route path='/' element={ <HeroSection/>} />
+                <Route path='register' element={ <Register/>} />
+                <Route path='login' element={ <Login/>} />
+                <Route path='register' element={ <Register/>} />
+                <Route path='home' element={ <Home/> }/>
                 
 
             </Routes>

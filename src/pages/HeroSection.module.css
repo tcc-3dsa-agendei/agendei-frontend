@@ -1,0 +1,138 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background: var(--cor-secundaria1);
+    background: linear-gradient(120deg,rgba(255, 255, 255, 1) 0%, rgba(191, 191, 191, 1) 50%, rgba(0, 0, 0, 0.47) 100%);
+}
+
+.box {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+.left, .right {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+}
+
+/*Linha Branca/direita*/
+.right { 
+    position: relative;
+}
+
+/*Linha Verde/esquerda*/
+.left {
+    position: relative;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.title {
+    font-size: var(--logo-md);
+    font-weight: var(--peso-bold);
+    color: var(--cor-primaria4);
+}
+
+.subtitle {
+    font-size: var(--texto-gd);
+    color: var(--cor-primaria4);
+}
+
+#lineLt {
+    position: absolute;
+    bottom: 5vh;
+    width: 100%;
+    height: 0.5%;
+    background-color: var(--cor-primaria3);
+    
+}
+
+#lineRt {
+    position: absolute;
+    top: 5vh;
+    width: 100%;
+    height: 0.5%;
+    background-color: var(--cor-secundaria2);
+}
+
+.text {
+    position: absolute;
+    display: flex;
+    width: 40%;
+    height: 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: var(--texto-md);
+    color: var(--cor-secundaria1);
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 7.7%;
+    position: relative;
+    top: 13%;
+    background-color: var(--cor-primaria4);
+    font-size: var(--titulo-pq);
+    color: var(--cor-secundaria1);
+    font-weight: var(--peso-semibold);
+    text-decoration: none;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.493);
+    transition: all .5s;
+}
+
+.button:hover {
+    box-shadow: 0 0 20px #249b93;
+    background-color: var(--cor-primaria3);
+    transform: scale(1.05);
+}
+
+.button:focus {
+    background-color: var(--cor-primaria1);
+}
+
+#leftPng {
+    position: absolute;
+    width: 30%;
+    top: 0px;
+    left: 0px;
+}
+
+#rightPng {
+    position: absolute;
+    width: 30%;
+    bottom: 0px;
+    right: 0px;
+    transform: rotate(180deg);
+}
+
+.footer {
+    width: 100%;
+    height: 10%;
+    background-color: var(--cor-primaria4);
+}
