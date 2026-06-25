@@ -35,8 +35,6 @@ export function HeroSection() {
           <img src={form} id={initialStyle.rightPng}/>
         </div>
       </div>
-      <div className={initialStyle.footer}></div>{" "}
-      {/*Footer genérico para seguir o modelo*/}
     </div>
   );
 }

@@ -11,20 +11,6 @@
   color: #1a1a1a;
 }
 
-/* ---------------------------------------------------------
-   SIDEBAR (menu lateral fixo)
---------------------------------------------------------- */
-.sidebar {
-  width: 240px;
-  flex-shrink: 0;
-  background-color: #1b4d47; /* verde-petróleo escuro da identidade visual */
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 24px 20px;
-}
-
 .logo {
   font-size: 20px;
   font-weight: 700;
@@ -59,7 +45,6 @@
 
 /* Item ativo (Home), destacado com fundo mais claro */
 .navItemActive {
-  composes: navItem;
   background-color: #2f6f63;
   color: #ffffff;
 }

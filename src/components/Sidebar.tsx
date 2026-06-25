@@ -18,11 +18,11 @@ export function Sidebar() {
                     </a>
 
                     <a href="#" className={styles.text}>
-                         Sobre nós
+                         Agendas
                     </a>
 
                     <a href="#" className={styles.text}>
-                         Agendas
+                         Agendamentos
                     </a>
 
                     <a href="#" className={styles.text}>
@@ -30,7 +30,7 @@ export function Sidebar() {
                     </a>
 
                     <a href="#" className={styles.text}>
-                         Configurações
+                         Sobre nós  
                     </a>
 
                 </nav>
