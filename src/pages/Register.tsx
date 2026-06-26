@@ -1,4 +1,6 @@
 import styles from './Register.module.css'
+import duplicate from './Login.module.css'
+import { Link } from 'react-router-dom'
 
 export function Register(){
 
@@ -109,9 +111,12 @@ export function Register(){
                         Entre na sua conta já existente e dê o próximo passo conosco
                         </p>
 
-                        <button>
-                        Fazer Login 
-                        </button>
+                        <Link
+                        className={duplicate.model1}
+                        to='/login'
+                        >
+                            Fazer Login
+                        </Link>
 
                     </div>
 

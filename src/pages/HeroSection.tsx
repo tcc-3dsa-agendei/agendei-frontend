@@ -28,15 +28,16 @@ export function HeroSection() {
                 ao seu site de agendamentos totalmente gratuito!
               </p>
             </div>
-            <Link to="login" className={initialStyle.button}>
+            <Link 
+            to="/login"
+            className={initialStyle.button}
+            >
               Começar
             </Link>
           </div>
           <img src={form} id={initialStyle.rightPng}/>
         </div>
       </div>
-      <div className={initialStyle.footer}></div>{" "}
-      {/*Footer genérico para seguir o modelo*/}
     </div>
   );
 }

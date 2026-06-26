@@ -13,7 +13,7 @@ export function MainLayout({ children }: MainLayoutProps){
 
         <div className={styles.layout}>
 
-            <Sidebar />
+                <Sidebar />
 
             <div className={styles.content}>
 
