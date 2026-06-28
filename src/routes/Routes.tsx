@@ -8,6 +8,7 @@ import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
 import { HeroSection } from "../pages/HeroSection";
 import { Schedule } from "../pages/Schedule";
+import { Clients } from "../pages/Clients";
 
 
 
@@ -22,6 +23,7 @@ export function SetupNavigation() {
                 <Route path='/home' element={ <Home/> }/>
                 <Route path='/about' element={ <About/> }/>
                 <Route path='/agenda' element={ <Schedule/>} />
+                <Route path='/clientes' element={ <Clients/>} />
                 
 
                 {/*Não esquecer de colocar a barra antes do nome da rota:
