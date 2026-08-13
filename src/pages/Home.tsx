@@ -1,15 +1,7 @@
 import styles from './Home.module.css';
 import { MainLayout } from '../layout/MainLayout'
+import notebook from "../assets/notebook.jpg";
 
-// ===========================================================
-// Home.tsx
-// Página inicial (landing page) do sistema Agendei.com
-// Estrutura: Sidebar de navegação + conteúdo principal (hero,
-// funcionalidades e rodapé institucional)
-// ===========================================================
-
-// Ícones simples em SVG inline, evitando dependência externa de
-// bibliotecas de ícones (mantém o componente autocontido)
 function IconCalendar() {
   return (
     <svg className={styles.icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -94,37 +86,49 @@ export function Home() {
       <main className={styles.main}>
         {/* ----- Seção Hero (apresentação inicial) ----- */}
         <section className={styles.hero}>
-          <div>
-            <p className={styles.eyebrow}>Bem-vindo ao Agendei.com</p>
-            <h1 className={styles.title}>
-              Organize seus agendamentos de forma simples e eficiente
-            </h1>
-            <p className={styles.description}>
-              O Agendei.com é uma plataforma completa para gerenciar clientes, serviços e
-              horários em um só lugar, facilitando o dia a dia da sua empresa
-            </p>
-            <div className={styles.ctaGroup}>
-              <button className={styles.btnPrimary} type="button">
-                Saiba mais
-              </button>
-              <button className={styles.btnSecondary} type="button">
-                Acessar agenda
-              </button>
-            </div>
+
+          <div className={styles.heroContent}>
+
+              <p className={styles.eyebrow}>
+                  Bem-vindo ao Agendei.com
+              </p>
+
+              <h1 className={styles.title}>
+                  Organize seus agendamentos
+                  <br />
+                  de forma simples e eficiente
+              </h1>
+
+              <p className={styles.description}>
+                  O Agendei.com é uma plataforma completa para gerenciar
+                  clientes, serviços e horários em um só lugar, facilitando
+                  o dia a dia da sua empresa.
+              </p>
+
+              <div className={styles.ctaGroup}>
+                  <button className={styles.btnPrimary} type="button">
+                      Saiba mais
+                  </button>
+
+                  <button className={styles.btnSecondary} type="button">
+                      Acessar agenda
+                  </button>
+              </div>
+
           </div>
 
           <div className={styles.heroImageWrapper}>
-            {/* Substituir pela imagem definitiva (ex.: import de asset local) */}
-            <img
+
+          <img
               className={styles.heroImage}
-              src="/assets/67"
-              alt="Não tem nada preciso do png do note"
-            />
-            <div className={styles.heroAccent}>
-              <span />
-              <span />
-            </div>
-          </div>
+              src={notebook}
+              alt="Notebook com código"
+          />
+
+
+        </div>
+
+
         </section>
 
         {/* ----- Seção de funcionalidades principais ----- */}

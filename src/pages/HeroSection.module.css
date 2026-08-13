@@ -118,14 +118,14 @@
 
 #leftPng {
     position: absolute;
-    width: 30%;
+    width: 25%;
     top: 0px;
     left: 0px;
 }
 
 #rightPng {
     position: absolute;
-    width: 30%;
+    width: 25%;
     bottom: 0px;
     right: 0px;
     transform: rotate(180deg);

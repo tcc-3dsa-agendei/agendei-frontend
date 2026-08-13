@@ -1,4 +1,5 @@
 import styles from './Sidebar.module.css'
+import { NavLink } from 'react-router-dom'
 
 export function Sidebar() {
     return (
@@ -13,25 +14,41 @@ export function Sidebar() {
 
                 <nav className={styles.menu}>
 
-                    <a href="#" className={styles.active}>
-                         Home
-                    </a>
+                    <NavLink
+                        to="/home"
+                        className={({ isActive }) =>
+                            isActive ? styles.active : styles.text
+                        }
+                    >
+                        Home
+                    </NavLink>
 
-                    <a href="#" className={styles.text}>
-                         Agendas
-                    </a>
+                    <NavLink
+                        to="/agenda"
+                        className={({ isActive }) =>
+                            isActive ? styles.active : styles.text
+                        }
+                    >
+                        Agendas
+                    </NavLink>
 
-                    <a href="#" className={styles.text}>
-                         Agendamentos
-                    </a>
+                    <NavLink
+                        to="/clientes"
+                        className={({ isActive }) =>
+                            isActive ? styles.active : styles.text
+                        }
+                    >
+                        Clientes
+                    </NavLink>
 
-                    <a href="#" className={styles.text}>
-                         Clientes
-                    </a>
-
-                    <a href="#" className={styles.text}>
-                         Sobre nós  
-                    </a>
+                    <NavLink
+                        to="/about"
+                        className={({ isActive }) =>
+                            isActive ? styles.active : styles.text
+                        }
+                    >
+                        Sobre nós
+                    </NavLink>
 
                 </nav>
 
