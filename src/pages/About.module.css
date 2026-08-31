@@ -1,286 +1,311 @@
-/* ===========================================================
-   About.module.css — Página "Sobre o Agendei.com"
-   =========================================================== */
+
 
 .page {
+  width: 100%;
+  min-height: 100%;
+
   display: flex;
-  min-height: 100vh;
-  background-color: #f5f7f6;
-  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+  flex-direction: column;
+
+  background: linear-gradient(
+    90deg,
+    var(--cor-secundaria2) 50%,
+    var(--cor-secundaria3) 100%
+  );
+
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
   color: #1a1a1a;
 }
 
-/* ---------------------------------------------------------
-   SIDEBAR
---------------------------------------------------------- */
-.sidebar {
-  width: 240px;
-  flex-shrink: 0;
-  background-color: #1b4d47;
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 24px 20px;
+
+
+.intro {
+  position: relative;
+
+  padding: 50px 40px 50px;
+
+  background: linear-gradient(
+    90deg,
+    var(--cor-secundaria2) 0%,
+    var(--cor-secundaria1) 100%
+  );
 }
 
 .logo {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 32px;
+  position: absolute;
+
+  width: 230px;
+
+  right: 100px;
+  top: 50%;
+
+  transform: translateY(-50%);
 }
 
-.nav {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.navItem {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #d9e6e3;
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  transition: background-color 0.15s ease;
-}
-
-.navItem:hover {
-  background-color: rgba(255, 255, 255, 0.08);
-}
-
-.navItemActive {
-  background-color: #2f6f63;
-  color: #ffffff;
-}
-
-.icon {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-}
-
-.userBox {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background-color: #ffffff;
-  flex-shrink: 0;
-}
-
-.userName {
-  font-size: 13px;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-.userEmail {
-  font-size: 11px;
-  color: #b9cdc8;
-}
-
-/* ---------------------------------------------------------
-   CONTEÚDO PRINCIPAL
---------------------------------------------------------- */
-.main {
-  flex: 1;
-  overflow-y: auto;
-  padding: 40px 40px 56px;
-}
-
-/* ----- Cartão branco principal (envolve tudo) ----- */
-.card {
-  background-color: #ffffff;
-  border-radius: 12px;
-  padding: 32px 36px;
-}
-
-/* ----- Título com sublinhado verde ----- */
-.title {
-  font-size: 22px;
-  font-weight: 700;
-  color: #1b4d47;
-  padding-bottom: 8px;
-  border-bottom: 3px solid #1b4d47;
+.intro h1 {
   display: inline-block;
-  margin-bottom: 20px;
+
+  margin: 0 0 15px;
+
+  padding-bottom: 7px;
+
+  font-size: var(--texto-gd);
+  font-weight: 700;
+
+  color: var(--cor-primaria3);
+
+  border-bottom: 2px solid var(--cor-primaria3);
 }
 
-/* ----- Parágrafos de apresentação ----- */
-.paragraph {
-  font-size: 13.5px;
-  line-height: 1.65;
-  color: #444444;
-  max-width: 560px;
-  margin-bottom: 12px;
+.intro p {
+  max-width: 520px;
+
+  margin: 0 0 10px;
+
+  font-size: var(--texto-sm);
+
+  color: var(--cor-terciaria);
 }
 
-/* ----- Grade Missão / Visão / Valores ----- */
-.mvvGrid {
+
+
+.features {
   display: grid;
+
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 28px;
+
+  gap: 45px;
+
+  padding: 40px 30px 25px;
+
+  background: linear-gradient(
+    90deg,
+    var(--cor-secundaria2) 50%,
+    var(--cor-secundaria3) 100%
+  );;
 }
 
-.mvvCard {
-  background-color: #f9fafa;
-  border: 1px solid #e4e8e7;
-  border-radius: 10px;
-  padding: 18px 20px;
-}
-
-.mvvHeader {
+.feature {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
+
+  gap: 15px;
+
+  align-items: flex-start;
+
+  padding: 25px;
+
+  background-color: #ffffff;
+
+  border-radius: 12px;
+
+  box-sizing: border-box;
 }
 
-/* Ícone com fundo verde escuro */
-.mvvIcon {
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  background-color: #1b4d47;
+.featureIcon {
   display: flex;
+
   align-items: center;
   justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
   flex-shrink: 0;
+
+  border-radius: 5px;
+
+  background-color: #0d5b54;
 }
 
-.mvvIcon svg {
-  width: 16px;
-  height: 16px;
-  color: #ffffff;
-}
+.feature h2 {
+  margin: 3px 5px 10px;
 
-.mvvTitle {
-  font-size: 14px;
+  font-size: var(--texto-gd);
   font-weight: 700;
-  color: #1a1a1a;
+
+  color: var(--cor-primaria3);
 }
 
-.mvvText {
-  font-size: 12.5px;
-  line-height: 1.6;
-  color: #555555;
+.feature p {
+  margin: 0;
+
+  font-size: var(--texto-sp);
+  font-weight: var(--peso-medium);
+
+  color: var(--cor-secundaria6);
+
 }
 
-/* ----- Seção "Nossa equipe" ----- */
-.teamSection {
-  margin-top: 32px;
-}
 
-.teamHeader {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 24px;
-}
 
-.teamIcon {
-  width: 28px;
-  height: 28px;
-  color: #1b4d47;
-  flex-shrink: 0;
+
+.team {
+  padding: 25px 12px 30px;
+
+  background: linear-gradient(
+    90deg,
+    var(--cor-secundaria2) 50%,
+    var(--cor-secundaria3) 100%
+  );;
 }
 
 .teamTitle {
-  font-size: 15px;
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 0 18px 12px;
+}
+
+.teamIcon {
+  width: 18px;
+  height: 18px;
+
+  flex-shrink: 0;
+}
+
+.teamTitle h2 {
+  margin: 0;
+
+  font-size: var(--texto-gd);
   font-weight: 700;
-  color: #1a1a1a;
+
+  color: var(--cor-primaria3);
+
   white-space: nowrap;
 }
 
-/* Linha horizontal que se estende após o título */
-.teamDivider {
+.teamLine {
   flex: 1;
+
   height: 2px;
-  background-color: #1b4d47;
-  border-radius: 2px;
+
+  background-color: var(--cor-primaria3);
 }
 
-/* Grade de membros da equipe */
-.teamGrid {
+
+
+.teamList {
   display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
+
+  width: 100%;
+
+  padding: 20px 5px;
+
+  background-color: var(--cor-secundaria1);
+
+  border-radius: 12px;
+
+  box-sizing: border-box;
+  margin-top: 10px;
 }
 
-.teamMember {
+.member {
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
-  gap: 10px;
-  min-width: 90px;
+
+  justify-content: flex-start;
+
+  width: 20%;
+
+  padding: 0 10px;
+
+  border-right: 2px solid #e5e5e5;
 }
 
-/* Foto circular do membro (placeholder preto como no Figma) */
+.member:last-child {
+  border-right: none;
+}
+
 .memberPhoto {
-  width: 72px;
-  height: 72px;
+  width: 45px;
+  height: 45px;
+
+  margin-bottom: 7px;
+
   border-radius: 50%;
-  background-color: #111111;
+
   overflow: hidden;
-  flex-shrink: 0;
+  background-color: var(--cor-secundaria2);
+  padding: 5px;
 }
 
 .memberPhoto img {
   width: 100%;
   height: 100%;
+
   object-fit: cover;
 }
 
-.memberName {
-  font-size: 12.5px;
+.member h3 {
+  margin: 0 0 5px;
+  margin-top: 5px;
+
+  font-size: var(--texto-sm);
   font-weight: 600;
-  color: #1a1a1a;
+
+  color: #111111;
+
   text-align: center;
 }
 
-/* Badge colorido com a função do membro */
-.memberRole {
-  font-size: 11px;
+.member span {
+  padding: 3px 7px;
+
+  border-radius: 8px;
+
+  font-size: var(--texto-pq);
   font-weight: 500;
-  color: #ffffff;
-  background-color: #1b4d47;
-  padding: 3px 10px;
-  border-radius: 20px;
-  white-space: nowrap;
+
+  color: var(--cor-secundaria1);
+
+  background-color: var(--cor-primaria3);
+
+  margin-top: 2px;
 }
 
-/* ---------------------------------------------------------
-   RESPONSIVIDADE BÁSICA
---------------------------------------------------------- */
+
+
 @media (max-width: 900px) {
-  .mvvGrid {
+
+  .features {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .teamList {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .member {
+    width: calc(33.33% - 20px);
+
+    border-right: none;
   }
 }
 
-@media (max-width: 768px) {
-  .page {
-    flex-direction: column;
+
+@media (max-width: 600px) {
+
+  .intro {
+    padding: 25px 20px;
   }
 
-  .sidebar {
+  .features {
+    padding: 20px;
+  }
+
+  .team {
+    padding: 0 20px 20px;
+  }
+
+  .member {
     width: 100%;
-  }
-
-  .main {
-    padding: 24px 16px;
   }
 }

@@ -1,43 +1,54 @@
-import initialStyle from "./HeroSection.module.css"
 import { Link } from "react-router-dom";
+import styles from "./HeroSection.module.css";
 import form from "../assets/form.png";
+import fundo from "../assets/fundo.jpg";
 
 export function HeroSection() {
   return (
-    <div className={initialStyle.main}>
-      <div className={initialStyle.box}>
-        <div className={initialStyle.left}>
-          <img src={form} id={initialStyle.leftPng}/>
-          <div className={initialStyle.center}>
-            <p className={initialStyle.title}>Agendei.com</p>
-            <p className={initialStyle.subtitle}>
-              Agendar não precisa ser complicado
-            </p>
-          </div>
-          <div id={initialStyle.lineLt}></div>
-          {/*Linha verde, no canto inferior esquerdo*/}
+    <main className={styles.container}>
+
+      <div className={styles.topDecoration}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <section className={styles.hero}>
+
+        <div className={styles.content}>
+
+          <h1>Agendei.com</h1>
+
+          <p>
+            Agendar não precisa ser complicado
+          </p>
+
+          <Link to="/login" className={styles.button}>
+            Começar
+          </Link>
+
         </div>
 
-        <div className={initialStyle.right}>
-          <div id={initialStyle.lineRt}></div>
-          {/*Linha verde, no canto superior direito*/}
-          <div className={initialStyle.center}>
-            <div className={initialStyle.text}>
-              <p id={initialStyle.subtitle1}>Seja bem-vindo(a)</p>
-              <p id={initialStyle.subtitle2}>
-                ao seu site de agendamentos totalmente gratuito!
-              </p>
-            </div>
-            <Link 
-            to="/login"
-            className={initialStyle.button}
-            >
-              Começar
-            </Link>
-          </div>
-          <img src={form} id={initialStyle.rightPng}/>
+        <div className={styles.imageContainer}>
+          <img
+            src={fundo}
+            alt="Calendário de agendamentos"
+          />
         </div>
+
+      </section>
+
+      <div className={styles.topLine}></div>
+      <div className={styles.bottomLine}></div>
+
+      <div className={styles.bottomDecoration}>
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-    </div>
+
+    </main>
   );
 }
+
+export default HeroSection;

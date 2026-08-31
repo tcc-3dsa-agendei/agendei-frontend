@@ -39,7 +39,7 @@
 .lineBaixo span{
     width: 510px;
     height: 3px;
-    background-color: var(--cor-primaria1);
+    background-color: var(--cor-secundaria1);
     border-radius: 10px;
     opacity: 0.75;
 }
