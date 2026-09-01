@@ -1,6 +1,15 @@
 import { MainLayout } from "../layout/MainLayout";
 import styles from "./Home.module.css";
-import notebook from "../assets/notebook.jpg";
+import notebook from "../assets/notebook.jpg"; 
+import logo from "../assets/logo.png";
+import form from "../assets/form.png";
+import {
+  IconCalendarEvent,
+  IconUsers,
+  IconChartBar,
+  IconSettings,
+  IconClock
+} from "@tabler/icons-react";
 
 export function Home() {
   return (
@@ -9,7 +18,6 @@ export function Home() {
 
         <main className={styles.main}>
 
-          {/* HERO */}
 
           <section className={styles.hero}>
 
@@ -45,7 +53,6 @@ export function Home() {
 
             </div>
 
-
             <div className={styles.heroImageWrapper}>
 
               <img
@@ -54,26 +61,38 @@ export function Home() {
                 alt="Notebook com calendário de agendamentos"
               />
 
+              <div className={styles.line}>
+                <span></span>
+              </div>
+
             </div>
 
           </section>
 
 
-          {/* FUNCIONALIDADES */}
 
           <section className={styles.featuresSection}>
+
+            <img
+              src={form}
+              alt="Formas"
+              className={styles.topDecorative}
+            />
 
             <h2 className={styles.featuresTitle}>
               Principais Funcionalidades
             </h2>
 
+            <div className={styles.featuresLine}> 
+              <span></span> 
+              </div>
 
             <div className={styles.featuresGrid}>
 
               <div className={styles.featureCard}>
 
                 <div className={styles.featureIcon}>
-                  📅
+                  <IconCalendarEvent />
                 </div>
 
                 <h3 className={styles.featureTitle}>
@@ -90,7 +109,7 @@ export function Home() {
               <div className={styles.featureCard}>
 
                 <div className={styles.featureIcon}>
-                  👥
+                  <IconUsers />
                 </div>
 
                 <h3 className={styles.featureTitle}>
@@ -107,7 +126,7 @@ export function Home() {
               <div className={styles.featureCard}>
 
                 <div className={styles.featureIcon}>
-                  📊
+                  <IconChartBar />
                 </div>
 
                 <h3 className={styles.featureTitle}>
@@ -124,7 +143,7 @@ export function Home() {
               <div className={styles.featureCard}>
 
                 <div className={styles.featureIcon}>
-                  ⚙
+                  <IconSettings />
                 </div>
 
                 <h3 className={styles.featureTitle}>
@@ -142,14 +161,13 @@ export function Home() {
           </section>
 
 
-          {/* RODAPÉ */}
 
           <section className={styles.footerSection}>
 
             <div className={styles.footerCard}>
 
               <div className={styles.footerIcon}>
-                🕐
+                <IconClock />
               </div>
 
               <div>
@@ -172,7 +190,11 @@ export function Home() {
             <div className={styles.footerCard}>
 
               <div className={styles.footerIcon}>
-                <strong>A</strong>
+                <img
+                  src={logo}
+                  alt="Agendei.com"
+                  className={styles.logo}
+            />
               </div>
 
               <div>
@@ -189,6 +211,12 @@ export function Home() {
               </div>
 
             </div>
+
+            <img
+              src={form}
+              alt="Formas"
+              className={styles.bottomDecorative}
+            />
 
           </section>
 

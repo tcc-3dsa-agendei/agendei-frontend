@@ -1,10 +1,18 @@
 import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
+import form from "../assets/form.png";
 
 export function Login() {
   return (
     <div className={styles.container}>
-      <div className={styles.lineTopo}>
+
+      <img
+        src={form}
+        alt="Formas"
+        className={styles.topDecorative}
+      />
+
+      <div className={styles.lineTop}>
         <span></span>
       </div>
 
@@ -53,9 +61,17 @@ export function Login() {
           </div>
         </div>
       </div>
-      <div className={styles.lineBaixo}>
+      
+      <div className={styles.lineBottom}>
         <span></span>
       </div>
+
+      <img
+        src={form}
+        alt="Formas"
+        className={styles.bottomDecorative}
+      />
+
     </div>
   );
 }

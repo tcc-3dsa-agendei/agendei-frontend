@@ -7,11 +7,11 @@ export function HeroSection() {
   return (
     <main className={styles.container}>
 
-      <div className={styles.topDecoration}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+      <img
+        src={form}
+        alt="Formas"
+        className={styles.topDecorative}
+      />
 
       <section className={styles.hero}>
 
@@ -41,11 +41,11 @@ export function HeroSection() {
       <div className={styles.topLine}></div>
       <div className={styles.bottomLine}></div>
 
-      <div className={styles.bottomDecoration}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+      <img
+        src={form}
+        alt="Formas"
+        className={styles.bottomDecorative}
+      />
 
     </main>
   );

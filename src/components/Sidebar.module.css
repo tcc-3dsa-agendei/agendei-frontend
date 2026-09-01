@@ -1,84 +1,134 @@
-.sidebar{
+.sidebar {
     width: 240px;
     height: 100vh;
+
     background: linear-gradient(
         180deg,
         var(--cor-primaria3) 50%,
         var(--cor-primaria2) 100%
     );
+
     position: fixed;
     left: 0;
     top: 0;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
     padding: 25px;
+
+    box-sizing: border-box;
 }
 
-.logo{
+
+.logo {
     color: var(--cor-secundaria1);
+
     font-size: var(--titulo-pq);
     font-weight: var(--peso-bold);
+
     margin-bottom: 40px;
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.menu{
+
+.menu {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.menu a{
+
+.menu a {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
     text-decoration: none;
+
     color: var(--cor-secundaria1);
+
     padding: 12px 15px;
+
     border-radius: 15px;
+
     transition: .2s;
 }
 
-.menu a:hover{
-    background-color: rgba(255,255,255,.05);
+
+.menu a svg {
+    width: 20px;
+    height: 20px;
+
+    flex-shrink: 0;
 }
 
-.active{
+
+.menu a:hover {
+    background-color: rgba(255, 255, 255, .05);
+}
+
+
+.active {
     background-color: var(--cor-primaria4);
+
     font-weight: var(--peso-medium);
     font-size: var(--texto-sm);
 }
 
-.text{
+
+.text {
     color: var(--cor-secundaria1);
+
     font-weight: var(--peso-medium);
     font-size: var(--texto-sm);
 }
 
-.user{
+
+.user {
     display: flex;
     align-items: center;
 
     gap: 12px;
 }
 
-.avatar{
+
+.avatar {
     width: 45px;
     height: 45px;
 
     border-radius: 50%;
 
-    background-color: white;
+    background-color: var(--cor-secundaria1);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.user h4{
+.avatar svg {
+    width: 35px;
+    height: 35px;
+
+    color: var(--cor-primaria3);
+}
+
+.user h4 {
     color: white;
 
     font-size: var(--texto-pq);
+
+    margin: 0;
 }
 
-.user span{
-    color: rgba(255,255,255,.8);
+
+.user span {
+    color: rgba(255, 255, 255, .8);
 
     font-size: 0.70rem;
 }

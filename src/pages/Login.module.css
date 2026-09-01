@@ -11,7 +11,22 @@
     );
 }
 
-.lineTopo{
+.topDecorative {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  width: 120px;
+  height: auto;
+
+transform: scaleX(-1) ;
+
+  z-index: 2;
+}
+
+
+.lineTop{
     position: absolute;
     top: 20px;
     left: 0px;
@@ -19,7 +34,7 @@
     flex-direction: column;
 }
 
-.lineTopo span{
+.lineTop span{
     width: 510px;
     height: 3px;
     background-color: var(--cor-primaria1);
@@ -27,7 +42,7 @@
     opacity: 0.75;
 }
 
-.lineBaixo{
+.lineBottom{
     position: absolute;
 
     bottom: 20px;
@@ -38,7 +53,7 @@
     align-items: flex-end;
 }
 
-.lineBaixo span{
+.lineBottom span{
     width: 510px;
     height: 3px;
 
@@ -246,4 +261,18 @@
     font-weight: var(--peso-bold);
     color: var(--cor-primaria1);
     cursor: default;
+}
+
+.bottomDecorative {
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 120px;
+  height: auto;
+
+  transform: scaleY(-1);
+
+  z-index: 2;
 }

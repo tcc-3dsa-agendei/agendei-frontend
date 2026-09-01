@@ -2,28 +2,20 @@ import styles from "./About.module.css";
 import { MainLayout } from "../layout/MainLayout";
 import logo from "../assets/logo.png";
 import user from "../assets/user.png";
-
-const features = [
-  {
-    title: "Missão",
-    text: "Simplificar a gestão de agendamentos e informações empresariais, proporcionando mais organização, eficiência e qualidade no atendimento.",
-  },
-  {
-    title: "Visão",
-    text: "Ser referência em soluções de gestão de agendamentos, ajudando empresas de diferentes segmentos a crescerem com mais organização.",
-  },
-  {
-    title: "Valores",
-    text: "Valorizamos a simplicidade, a inovação e o compromisso com nossos usuários, desenvolvendo soluções que promovam organização, produtividade e uma melhor experiência de atendimento.",
-  },
-];
+import form from "../assets/form.png";
+import {
+  IconTarget,
+  IconEye,
+  IconHeart,
+  IconUsers,
+} from "@tabler/icons-react";
 
 const team = [
   { name: "Vitor Felipe", role: "Designer" },
   { name: "Vitor Felício", role: "Back-end" },
   { name: "Nelson Francisco", role: "Front-end" },
   { name: "Lucas Alves", role: "Documentação" },
-  { name: "Moises Marques", role: "Designer" },
+  { name: "Moises Marques", role: "Front-end" },
 ];
 
 export function About() {
@@ -52,30 +44,81 @@ export function About() {
             src={logo}
             alt="Agendei.com"
             className={styles.logo}
-            />
+          />
 
         </section>
 
 
         <section className={styles.features}>
 
-          {features.map((feature) => (
+          <img
+              src={form}
+              alt="Formas"
+              className={styles.topDecorative}
+            />
 
-            <div className={styles.feature} key={feature.title}>
+          <div className={styles.feature}>
 
-              <div className={styles.featureIcon}>
-                {/* Ícone */}
-              </div>
+            <div className={styles.featureIcon}>
+              <IconTarget />
+            </div>
 
-              <div>
-                <h2>{feature.title}</h2>
+            <div>
 
-                <p>{feature.text}</p>
-              </div>
+              <h2>Missão</h2>
+
+              <p>
+                Simplificar a gestão de agendamentos e informações
+                empresariais, proporcionando mais organização, eficiência
+                e qualidade no atendimento.
+              </p>
 
             </div>
 
-          ))}
+          </div>
+
+
+          <div className={styles.feature}>
+
+            <div className={styles.featureIcon}>
+              <IconEye />
+            </div>
+
+            <div>
+
+              <h2>Visão</h2>
+
+              <p>
+                Ser referência em soluções de gestão de agendamentos,
+                ajudando empresas de diferentes segmentos a crescerem
+                com mais organização.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div className={styles.feature}>
+
+            <div className={styles.featureIcon}>
+              <IconHeart />
+            </div>
+
+            <div>
+
+              <h2>Valores</h2>
+
+              <p>
+                Valorizamos a simplicidade, a inovação e o compromisso
+                com nossos usuários, desenvolvendo soluções que promovam
+                organização, produtividade e uma melhor experiência de
+                atendimento.
+              </p>
+
+            </div>
+
+          </div>
 
         </section>
 
@@ -85,7 +128,7 @@ export function About() {
           <div className={styles.teamTitle}>
 
             <div className={styles.teamIcon}>
-              {/* Ícone */}
+              <IconUsers />
             </div>
 
             <h2>Nossa equipe</h2>
@@ -102,9 +145,12 @@ export function About() {
               <div className={styles.member} key={member.name}>
 
                 <div className={styles.memberPhoto}>
+
                   <img
-                  src={user}
-                  alt="Foto do membro" />
+                    src={user}
+                    alt="Foto do membro"
+                  />
+
                 </div>
 
                 <h3>{member.name}</h3>
@@ -116,6 +162,12 @@ export function About() {
             ))}
 
           </div>
+
+          <img
+              src={form}
+              alt="Formas"
+              className={styles.bottomDecorative}
+            />
 
         </section>
 

@@ -1,5 +1,12 @@
 import styles from './Sidebar.module.css'
 import { NavLink } from 'react-router-dom'
+import {
+    IconHome,
+    IconCalendarEvent,
+    IconUsers,
+    IconInfoCircle,
+    IconUserCircle
+} from '@tabler/icons-react'
 
 export function Sidebar() {
     return (
@@ -20,6 +27,7 @@ export function Sidebar() {
                             isActive ? styles.active : styles.text
                         }
                     >
+                        <IconHome />
                         Home
                     </NavLink>
 
@@ -29,6 +37,7 @@ export function Sidebar() {
                             isActive ? styles.active : styles.text
                         }
                     >
+                        <IconCalendarEvent />
                         Agendas
                     </NavLink>
 
@@ -38,6 +47,7 @@ export function Sidebar() {
                             isActive ? styles.active : styles.text
                         }
                     >
+                        <IconUsers />
                         Clientes
                     </NavLink>
 
@@ -47,6 +57,7 @@ export function Sidebar() {
                             isActive ? styles.active : styles.text
                         }
                     >
+                        <IconInfoCircle />
                         Sobre nós
                     </NavLink>
 
@@ -56,7 +67,9 @@ export function Sidebar() {
 
             <div className={styles.user}>
 
-                <div className={styles.avatar}></div>
+                <div className={styles.avatar}>
+                    <IconUserCircle />
+                </div>
 
                 <div>
 

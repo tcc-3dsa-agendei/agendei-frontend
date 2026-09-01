@@ -1,12 +1,19 @@
 import styles from './Register.module.css'
 import duplicate from './Login.module.css'
 import { Link } from 'react-router-dom'
+import form from "../assets/form.png";
 
 export function Register(){
 
     return(
 
         <div className={styles.container}>
+
+            <img
+                src={form}
+                alt="Formas"
+                className={styles.topDecorative}
+            />
 
             <div className={styles.lineTopo}>
                 <span></span>
@@ -125,6 +132,12 @@ export function Register(){
             <div className={styles.lineBaixo}>
                 <span></span>
             </div>
+
+            <img
+                src={form}
+                alt="Formas"
+                className={styles.bottomDecorative}
+            />
         </div>
 
 
