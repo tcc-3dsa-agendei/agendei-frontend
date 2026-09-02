@@ -11,7 +11,11 @@
 
   box-sizing: border-box;
 
-  background-color: var(--cor-secundaria2);
+  background: linear-gradient(
+      90deg,
+      var(--cor-secundaria2) 50%,
+      var(--cor-secundaria3) 100%
+    );
 
   isolation: isolate;
 }
@@ -29,7 +33,7 @@
 
   background: linear-gradient(
   90deg,
-  var(--cor-primaria4) 0%,
+  var(--cor-primaria5) 0%,
   var(--cor-primaria3) 100%
 );
 

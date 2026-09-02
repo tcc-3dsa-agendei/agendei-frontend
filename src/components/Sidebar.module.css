@@ -70,12 +70,12 @@
 
 
 .menu a:hover {
-    background-color: rgba(255, 255, 255, .05);
+    background-color: var(--cor-primaria4);
 }
 
 
 .active {
-    background-color: var(--cor-primaria4);
+    background-color: var(--cor-primaria5);
 
     font-weight: var(--peso-medium);
     font-size: var(--texto-sm);
@@ -89,17 +89,116 @@
     font-size: var(--texto-sm);
 }
 
+.userContainer {
+    position: relative;
+}
+
 
 .user {
     display: flex;
     align-items: center;
 
     gap: 12px;
+
+    padding: 10px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.user:hover {
+    background-color: var(--cor-primaria4);
+}
+
+.userMenu {
+    position: absolute;
+
+    left: 0;
+    bottom: calc(100% + 8px);
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(8px);
+
+    transition:
+        opacity .2s ease,
+        transform .2s ease,
+        visibility .2s ease;
+
+    z-index: 10;
+}
+.userContainer:hover .userMenu {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+.userMenu a,
+.userMenu button {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px 12px;
+
+    box-sizing: border-box;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: var(--cor-secundaria1);
+
+    font-family: inherit;
+
+    font-size: var(--texto-pq);
+
+    font-weight: var(--peso-medium);
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.userMenu a svg,
+.userMenu button svg {
+    width: 18px;
+    height: 18px;
+
+    flex-shrink: 0;
+}
+
+.userMenu a:hover,
+.userMenu button:hover {
+    color: var(--cor-secundaria3);
+}
+
+.userInfo {
+    min-width: 0;
 }
 
 
 .avatar {
-    width: 45px;
+    width: 50px;
     height: 45px;
 
     border-radius: 50%;
@@ -119,16 +218,28 @@
 }
 
 .user h4 {
-    color: white;
+    color: var(--cor-secundaria1);
 
     font-size: var(--texto-pq);
 
     margin: 0;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
 .user span {
-    color: rgba(255, 255, 255, .8);
+    display: block;
+
+    color: var(--cor-secundaria1);
 
     font-size: 0.70rem;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

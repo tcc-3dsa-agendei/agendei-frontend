@@ -7,6 +7,7 @@ import { Home } from "../pages/Home";
 import { About } from "../pages/About";
 import { Schedule } from "../pages/Schedule";
 import { Clients } from "../pages/Clients";
+import { Profile } from "../pages/Profile";
 
 export function SetupNavigation() {
     return (
@@ -23,6 +24,8 @@ export function SetupNavigation() {
                 <Route path="/agenda" element={<Schedule />} />
                 <Route path="/clientes" element={<Clients />} />
                 <Route path="/about" element={<About />} />
+
+                <Route path="/profile" element={<Profile />} />
 
             </Routes>
 

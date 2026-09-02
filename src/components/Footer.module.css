@@ -4,7 +4,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--cor-primaria4);
+     background: linear-gradient(
+  90deg,
+  var(--cor-primaria5) 0%,
+  var(--cor-primaria3) 100%
+);
+
     color: var(--cor-secundaria1);
     font-size: var(--texto-pq);
     gap: 5px;

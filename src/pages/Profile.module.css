@@ -1,0 +1,490 @@
+.page {
+  width: 100%;
+
+  min-height: 100vh;
+
+  background: linear-gradient(
+    90deg,
+    var(--cor-secundaria2) 50%,
+    var(--cor-secundaria3) 100%
+  );
+
+  position: relative;
+
+  padding: 0 20px 40px;
+
+  box-sizing: border-box;
+
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+}
+
+.header {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  z-index: 2; 
+}
+
+
+.headerTitle {
+  display: flex;
+  align-items: center; 
+  gap: 8px;          
+}
+
+.header svg {
+  width: 35px;
+  height: 35px;
+  color: var(--cor-secundaria1);
+  flex-shrink: 0;      
+}
+
+.title {
+  font-size: var(--texto-sg);
+  font-weight: var(--peso-semibold);
+  color: var(--cor-secundaria1);
+  margin: 0;
+}
+
+.subtitles {
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-light);
+  color: var(--cor-secundaria1);
+  margin: 6px 0 0 0;
+}
+
+.profile {
+    display: flex;
+
+    align-items: stretch;
+
+    gap: 20px;
+
+    width: 100%;
+    max-width: 1200px;
+
+    min-height: calc(100vh - 110px);
+
+    margin: 0 auto;
+
+    position: relative;
+
+    z-index: 1;
+    
+    padding: 100px 0 0;
+}
+
+
+.profileCard {
+    width: 230px;
+
+    flex-shrink: 0;
+
+    align-self: stretch;
+
+    padding: 30px 18px;
+
+    box-sizing: border-box;
+
+    background-color: var(--cor-secundaria1);
+
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar {
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+
+    background-color: var(--cor-secundaria4);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 18px;
+}
+
+.avatar div {
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+
+    background-color: var(--cor-secundaria4);
+}
+
+
+.profileCard h2 {
+    margin: 0;
+
+    font-size: var(--texto-md);
+
+    font-weight: var(--peso-bold);
+
+    color: #111111;
+
+    text-align: center;
+}
+
+
+.company {
+    margin-top: 3px;
+
+    font-size: var(--texto-sp);
+
+    color: var(--cor-primaria3);
+
+    font-weight: var(--peso-medium);
+}
+
+
+
+.divider {
+    width: 100%;
+
+    height: 2px;
+
+    margin: 33px 0;
+
+    background-color: var(--cor-secundaria2);
+}
+
+
+
+.contact {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 35px;
+}
+
+
+.contact div {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    width: 100%;
+}
+
+
+.contact svg {
+    width: 17px;
+    height: 17px;
+
+    flex-shrink: 0;
+
+    color: #222222;
+    margin-left: 10px;
+}
+
+
+.contact span {
+    font-size: var(--texto-pq);
+
+    color: var(--cor-secundaria6);
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+
+.contact div:last-child svg {
+    color: var(--cor-primaria1);
+}
+
+
+
+.profileActions {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-top: auto;
+}
+
+
+.profileActions button {
+    width: 100%;
+
+    border: none;
+
+    border-radius: 6px;
+
+    padding: 10px 8px;
+
+    box-sizing: border-box;
+
+    font-family: inherit;
+
+    font-size: var(--texto-sp);
+
+    font-weight: var(--peso-medium);
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    transition: .2s;
+}
+
+
+.editButton {
+    color: var(--cor-secundaria1);
+
+    background-color: var(--cor-primaria3);
+    
+    justify-content: center;
+}
+
+
+.editButton:hover {
+    background-color: var(--cor-primaria2);
+}
+
+
+.logoutButton,
+.whatsappButton {
+    color: var(--cor-terciaria);
+
+    background-color: var(--cor-secundaria1);
+
+    justify-content: flex-start;
+}
+
+
+.logoutButton:hover,
+.whatsappButton:hover {
+    color: var(--cor-secundaria4);
+}
+
+
+.profileActions svg {
+    width: 16px;
+    height: 16px;
+}
+
+
+
+.content {
+    flex: 1;
+
+    min-width: 0;
+
+    background-color: var(--cor-secundaria1);
+
+    border-radius: 12px;
+
+    padding: 12px 15px 15px;
+
+    box-sizing: border-box;
+}
+
+
+
+.form {
+    width: 100%;
+
+    background-color: var(--cor-secundaria1);
+
+    border-radius: 10px;
+}
+
+
+.formSection {
+    padding: 18px;
+
+    margin-bottom: 14px;
+
+    background-color: var(--cor-secundaria1);
+
+    border-radius: 10px;
+
+}
+
+
+.formSection h3 {
+    margin: 0 0 12px;
+
+    font-size: var(--texto-sm);
+
+    font-weight: var(--peso-medium);
+
+    color: var(--cor-primaria4);
+}
+
+
+
+.formGrid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    column-gap: 25px;
+
+    row-gap: 12px;
+}
+
+
+.field {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.field label {
+    font-size: var(--texto-sp);
+
+    color: var(--cor-secundaria5);
+}
+
+
+.field input {
+    width: 100%;
+
+    height: 34px;
+
+    padding: 0 15px;
+
+    box-sizing: border-box;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: var(--cor-secundaria2);
+
+    color: #555555;
+
+    font-family: inherit;
+
+    font-size: var(--texto-sp);
+
+    outline: none;
+}
+
+
+.updateButton {
+    padding: 10px 20px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background-color: var(--cor-primaria3);
+
+    color: var(--cor-secundaria1);
+
+    font-family: inherit;
+
+    font-size: var(--texto-sp);
+
+    font-weight: var(--peso-medium);
+
+    cursor: pointer;
+
+    transition: .2s;
+
+    margin-left: 20px;
+}
+
+.updateButton:hover {
+    background-color: var(--cor-primaria2);
+}
+
+
+
+.page::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 170px;
+
+    background: linear-gradient(
+    120deg,
+    var(--cor-primaria5) 0%,
+    var(--cor-primaria3) 100%
+  );
+
+    z-index: 0;
+}
+
+.bottomDecorative {
+  position: absolute;
+
+  right: 0;
+  bottom: -1px;
+
+  width: 110px;
+  height: auto;
+
+  transform: scaleX(-1) scaleY(-1);
+
+  z-index: 0;
+}
+
+
+
+@media (max-width: 900px) {
+
+    .profile {
+        flex-direction: column;
+    }
+
+    .profileCard {
+        width: 100%;
+    }
+
+    .contact {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .contact div {
+        width: auto;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .page {
+        padding: 20px 10px;
+    }
+
+    .formGrid {
+        grid-template-columns: 1fr;
+    }
+
+}

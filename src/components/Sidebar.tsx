@@ -5,7 +5,9 @@ import {
     IconCalendarEvent,
     IconUsers,
     IconInfoCircle,
-    IconUserCircle
+    IconUserCircle,
+    IconLogout,
+    IconEdit
 } from '@tabler/icons-react'
 
 export function Sidebar() {
@@ -65,19 +67,36 @@ export function Sidebar() {
 
             </div>
 
-            <div className={styles.user}>
+            <div className={styles.userContainer}>
 
-                <div className={styles.avatar}>
-                    <IconUserCircle />
+                <div className={styles.user}>
+
+                    <div className={styles.avatar}>
+                        <IconUserCircle />
+                    </div>
+
+                    <div className={styles.userInfo}>
+
+                        <h4>Dom Comédia</h4>
+
+                        <span>
+                            dcomedia@gmail.com
+                        </span>
+
+                    </div>
+
                 </div>
+                <div className={styles.userMenu}>
 
-                <div>
+                    <NavLink to="/profile">
+                        <IconEdit />
+                        Editar perfil
+                    </NavLink>
 
-                    <h4>Dom Comédia</h4>
-
-                    <span>
-                        dcomedia@gmail.com
-                    </span>
+                    <NavLink to="/">
+                        <IconLogout />
+                        Sair da conta
+                    </NavLink>
 
                 </div>
 
