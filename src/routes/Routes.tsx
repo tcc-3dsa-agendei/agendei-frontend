@@ -8,6 +8,7 @@ import { About } from "../pages/About";
 import { Schedule } from "../pages/Schedule";
 import { Clients } from "../pages/Clients";
 import { Profile } from "../pages/Profile";
+import { NewSchedule } from "../pages/NewSchedule";
 
 export function SetupNavigation() {
     return (
@@ -26,6 +27,8 @@ export function SetupNavigation() {
                 <Route path="/about" element={<About />} />
 
                 <Route path="/profile" element={<Profile />} />
+
+                <Route path="/nova-agenda" element={<NewSchedule />} />
 
             </Routes>
 
