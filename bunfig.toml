@@ -1,0 +1,4 @@
+[install]
+linker = "isolated"
+prefer = "offline"
+exact = true
