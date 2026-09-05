@@ -1,38 +1,36 @@
 {
-  "name": "agendei-frontend",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@tabler/icons-react": "^3.46.0",
-    "dom": "^0.0.3",
-    "react": "^19.2.6",
-    "react-dom": "19.2.6",
-    "react-router-dom": "^7.18.0",
-    "router": "^2.2.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.29.7",
-    "@biomejs/biome": "2.5.12",
-    "@eslint/js": "10.0.1",
-    "@rolldown/plugin-babel": "0.2.3",
-    "@types/babel__core": "7.20.5",
-    "@types/node": "24.12.3",
-    "@types/react": "19.2.14",
-    "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "6.0.1",
-    "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "10.3.0",
-    "eslint-plugin-react-hooks": "7.1.1",
-    "eslint-plugin-react-refresh": "0.5.2",
-    "globals": "17.6.0",
-    "typescript": "6.0.2",
-    "typescript-eslint": "8.59.2",
-    "vite": "^8.0.16"
-  }
+	"name": "agendei-frontend",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc -b && vite build",
+		"preview": "vite preview",
+		"lint": "biome lint",
+		"format": "biome format --write"
+	},
+	"dependencies": {
+		"@hookform/resolvers": "5.9.1",
+		"@tabler/icons-react": "3.46.0",
+		"better-auth": "1.7.2",
+		"react": "19.2.6",
+		"react-dom": "19.2.6",
+		"react-hook-form": "7.87.0",
+		"react-router-dom": "7.18.0",
+		"zod": "4.5.4"
+	},
+	"devDependencies": {
+		"@babel/core": "7.29.7",
+		"@biomejs/biome": "2.5.12",
+		"@rolldown/plugin-babel": "0.2.3",
+		"@types/babel__core": "7.20.5",
+		"@types/node": "24.12.3",
+		"@types/react": "19.2.14",
+		"@types/react-dom": "19.2.3",
+		"@vitejs/plugin-react": "6.0.1",
+		"babel-plugin-react-compiler": "1.0.0",
+		"typescript": "6.0.3",
+		"vite": "8.0.16"
+	}
 }
