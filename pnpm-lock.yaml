@@ -109,6 +109,9 @@ importers:
 
   .:
     dependencies:
+      '@brazilian-utils/brazilian-utils':
+        specifier: 2.3.0
+        version: 2.3.0
       '@hookform/resolvers':
         specifier: 5.9.1
         version: 5.9.1(@standard-schema/spec@1.1.0)(react-hook-form@7.87.0(react@19.2.6))(zod@4.5.4)
@@ -130,6 +133,9 @@ importers:
       react-router-dom:
         specifier: 7.18.0
         version: 7.18.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      use-mask-input:
+        specifier: 3.14.1
+        version: 3.14.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       zod:
         specifier: 4.5.4
         version: 4.5.4
@@ -381,6 +387,10 @@ packages:
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
+
+  '@brazilian-utils/brazilian-utils@2.3.0':
+    resolution: {integrity: sha512-gycd2tRqkWcS5bhSjFDgnvxIXjQuxr32xw5BAkflNpEp12r+FkuK60CDb48U7xJAszNt3sPW6u9hxEcea+CZPQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
 
   '@emnapi/core@1.10.0':
     resolution: {integrity: sha512-yq6OkJ4p82CAfPl0u9mQebQHKPJkY7WrIuk205cTYnYe+k2Z8YBh11FrbRG/H6ihirqcacOgl2BIO8oyMQLeXw==}
@@ -1035,6 +1045,27 @@ packages:
     peerDependencies:
       browserslist: '>= 4.21.0'
 
+  use-mask-input@3.14.1:
+    resolution: {integrity: sha512-v8A2WuNgLfyMmncVEb87JIF3kfG48uysQ41uWhvFEZkq4zFP5tNIRIeg5dlrmxDTJc2O8vFtYKgjxAL3fFSFfQ==}
+    engines: {node: '>=16', npm: '>=7'}
+    peerDependencies:
+      antd: '>=5'
+      react: '>=17'
+      react-dom: '>=17'
+      vee-validate: '>=4'
+      vue: '>=3.4'
+    peerDependenciesMeta:
+      antd:
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+      vee-validate:
+        optional: true
+      vue:
+        optional: true
+
   vite@8.0.16:
     resolution: {integrity: sha512-h9bXPmJichP5fLmVQo3PyaGSDE2n3aPuomeAlVRm0JLmt4rY6zmPKd59HYI4LNW8oTK7tlTsuC7l/m7awx9Jcw==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -1280,6 +1311,8 @@ snapshots:
 
   '@biomejs/cli-win32-x64@2.5.12':
     optional: true
+
+  '@brazilian-utils/brazilian-utils@2.3.0': {}
 
   '@emnapi/core@1.10.0':
     dependencies:
@@ -1705,6 +1738,11 @@ snapshots:
       browserslist: 4.28.9
       escalade: 3.2.0
       picocolors: 1.1.1
+
+  use-mask-input@3.14.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
+    optionalDependencies:
+      react: 19.2.6
+      react-dom: 19.2.6(react@19.2.6)
 
   vite@8.0.16(@types/node@24.12.3)(yaml@2.9.0):
     dependencies:
