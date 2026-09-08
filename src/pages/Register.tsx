@@ -1,7 +1,8 @@
-import { isValidMobilePhone } from "@brazilian-utils/brazilian-utils"
+import { isValidCNPJ, isValidMobilePhone } from "@brazilian-utils/brazilian-utils"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
+import { useHookFormMask } from "use-mask-input"
 import { z } from "zod"
 import form from "../assets/form.png"
 import duplicate from "./Login.module.css"
@@ -9,11 +10,12 @@ import styles from "./Register.module.css"
 
 const registerFormSchema = z
   .object({
-    name: z.string().min(3).max(255),
-    email: z.email().max(255),
-    password: z.string().min(6).max(128),
-    confirm_password: z.string().min(6).max(128),
-    phone: z.string().refine(isValidMobilePhone)
+    name: z.string().min(3, "Mínimo de 3 caracteres").max(255, "Máximo de 255 caracteres"),
+    email: z.email("E-mail inválido").max(255, "Máximo de 255 caracteres"),
+    password: z.string().min(6, "Mínimo de 6 caracteres").max(128, "Máximo de 128 caracteres"),
+    confirm_password: z.string().min(6, "As senhas não coincidem").max(128, "As senhas não coincidem"),
+    phone: z.string().refine(isValidMobilePhone, "Telefone inválido"),
+    tax_id: z.string().refine(isValidCNPJ, "CNPJ inválido")
   })
   .superRefine(({ password, confirm_password }, ctx) => {
     if (confirm_password !== password) {
@@ -29,10 +31,13 @@ export function Register() {
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting }
+    formState: { isSubmitting, errors }
   } = useForm({
-    resolver: zodResolver(registerFormSchema)
+    resolver: zodResolver(registerFormSchema),
+    reValidateMode: "onBlur"
   })
+
+  const registerWithMask = useHookFormMask(register)
 
   const handleRegisterUser = handleSubmit(async ({ name, email, password, phone }) => {
     console.log(name, email, password, phone)
@@ -56,17 +61,49 @@ export function Register() {
             <p>Crie sua conta informando seus dados pessoais abaixo</p>
 
             <div className={styles.inputsGrid}>
-              <input type="text" placeholder="Nome" />
-
-              <input type="email" placeholder="E-mail" />
-
-              <input type="password" placeholder="Senha" />
-              <input type="password" placeholder="Confirmar senha" />
-              <input type="number" placeholder="Telefone" />
-              <input type="number" placeholder="CNPJ" />
+              <div>
+                <label htmlFor="name">Seu nome completo</label>
+                <input {...register("name")} type="text" id="name" placeholder="Ex.: João da Silva" />
+                {errors.name && <p className={styles.error}>{errors.name.message}</p>}
+              </div>
+              <div>
+                <label htmlFor="email">Seu e-mail</label>
+                <input {...register("email")} id="email" type="email" placeholder="Ex.: empresa@email.com" />
+                {errors.email && <p className={styles.error}>{errors.email.message}</p>}
+              </div>
+              <div>
+                <label htmlFor="password">Crie sua senha</label>
+                <input
+                  {...register("password")}
+                  id="password"
+                  type="password"
+                  placeholder="Mínimo de 6 caracteres"
+                />
+                {errors.password && <p className={styles.error}>{errors.password.message}</p>}
+              </div>
+              <div>
+                <label htmlFor="confirm_password">Confirme sua senha</label>
+                <input
+                  {...register("confirm_password")}
+                  id="confirm_password"
+                  type="password"
+                  placeholder="Confirme sua senha"
+                />
+                {errors.confirm_password && <p className={styles.error}>{errors.confirm_password.message}</p>}
+              </div>
+              <div>
+                <label htmlFor="phone">Seu telefone</label>
+                <input {...registerWithMask("phone", "phone-br")} id="phone" type="text" />
+                {errors.phone && <p className={styles.error}>{errors.phone.message}</p>}
+              </div>
+              <div>
+                <label htmlFor="tax_id">CNPJ</label>
+                <input {...registerWithMask("tax_id", "cnpj")} id="tax_id" type="text" />
+                {errors.tax_id && <p className={styles.error}>{errors.tax_id.message}</p>}
+              </div>
             </div>
 
-            <button type="submit">Cadastrar</button>
+            <button type="submit">{isSubmitting ? "Aguarde..." : "Cadastrar"}</button>
           </form>
         </div>
 

@@ -1,16 +1,38 @@
-import { Link } from "react-router-dom";
-import styles from "./Login.module.css";
-import form from "../assets/form.png";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { Link } from "react-router-dom"
+import z from "zod"
+import form from "../assets/form.png"
+import styles from "./Login.module.css"
+
+const loginFormSchema = z.object({
+  email: z.email("E-mail inválido").max(255, "Máximo de 255 caracteres"),
+  password: z.string().min(6, "Mínimo de 6 caracteres").max(128, "Máximo de 128 caracteres"),
+  remember_me: z.boolean().default(true).optional()
+})
 
 export function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting, errors }
+  } = useForm({
+    resolver: zodResolver(loginFormSchema),
+    reValidateMode: "onBlur",
+    defaultValues: {
+      email: "",
+      password: "",
+      remember_me: true
+    }
+  })
+
+  const handleSignIn = handleSubmit(async ({ email, password, remember_me }) => {
+    console.log(email, password, remember_me)
+  })
+
   return (
     <div className={styles.container}>
-
-      <img
-        src={form}
-        alt="Formas"
-        className={styles.topDecorative}
-      />
+      <img src={form} alt="Formas" className={styles.topDecorative} />
 
       <div className={styles.lineTop}>
         <span></span>
@@ -23,10 +45,7 @@ export function Login() {
 
             <div className={styles.line}></div>
 
-            <p>
-              Crie uma nova conta com suas informações pessoais e comece sua
-              jornada conosco
-            </p>
+            <p>Crie uma nova conta com suas informações pessoais e comece sua jornada conosco</p>
 
             <Link to="/register" className={styles.model1}>
               Criar conta
@@ -37,43 +56,40 @@ export function Login() {
         <div className={styles.rightSide}>
           <h2 className={styles.logo}>Agendei.com</h2>
 
-          <div className={styles.formContainer}>
+          <form onSubmit={handleSignIn} className={styles.formContainer}>
             <h1>Login</h1>
 
             <p>Faça login informando seus dados abaixo</p>
 
-            <input type="text" placeholder="Nome ou E-mail" />
+            <div>
+              <label htmlFor="email">Seu e-mail</label>
+              <input {...register("email")} type="email" id="email" placeholder="Ex.: empresa@email.com" />
+              {errors.email && <p className={styles.error}>{errors.email.message}</p>}
+            </div>
 
-            <input type="password" placeholder="Senha" />
+            <div>
+              <label htmlFor="password">Sua senha</label>
+              <input {...register("password")} type="password" id="password" placeholder="Sua senha" />
+              {errors.password && <p className={styles.error}>{errors.password.message}</p>}
+            </div>
 
             <div className={styles.remember}>
-              <input type="checkbox" />
+              <input {...register("remember_me")} type="checkbox" />
               <span>Manter-se conectado</span>
             </div>
 
-            <Link to="/home" className={styles.confirm}>
-              Fazer Login
-            </Link>
-
-            <a href="#" className={styles.login}>
-              Esqueci a Senha
-            </a>
-          </div>
+            <button className={styles.confirm} type="submit">
+              {isSubmitting ? "Entrando..." : "Entrar"}
+            </button>
+          </form>
         </div>
       </div>
-      
+
       <div className={styles.lineBottom}>
         <span></span>
       </div>
 
-      <img
-        src={form}
-        alt="Formas"
-        className={styles.bottomDecorative}
-      />
-
+      <img src={form} alt="Formas" className={styles.bottomDecorative} />
     </div>
-  );
+  )
 }
-
-export default Login;
