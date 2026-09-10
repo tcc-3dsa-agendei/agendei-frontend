@@ -9,7 +9,7 @@ import {
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { MainLayout } from "../layout/MainLayout"
-import styles from "./Schedule.module.css"
+import styles from "./NewSchedule.module.css"
 
 interface today {
   dayN: number
@@ -25,8 +25,7 @@ export function NewSchedule() {
     mon: "Junho"
   })
 
-  const [step, setStep] = useState<number>(0)
-
+  const [step, setStep] = useState<number>(1)
   return (
     <MainLayout>
       <div className={styles.page}>
