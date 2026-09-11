@@ -1,0 +1,23 @@
+.footer{
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     background: linear-gradient(
+  90deg,
+  var(--cor-primaria5) 0%,
+  var(--cor-primaria3) 100%
+);
+
+    color: var(--cor-secundaria1);
+    font-size: var(--texto-pq);
+    gap: 5px;
+}
+
+.footer p{
+    color: var(--cor-secundaria1);
+    font-size: var(--texto-pq);
+    font-weight: var(--peso-regular);
+    margin: 0;
+}
