@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { About } from "../pages/About"
+import { Booking } from "../pages/Booking"
 import { Clients } from "../pages/Clients"
 import { HeroSection } from "../pages/HeroSection"
 import { Home } from "../pages/Home"
@@ -26,6 +27,8 @@ export function SetupNavigation() {
         <Route path="/profile" element={<Profile />} />
 
         <Route path="/nova-agenda" element={<NewSchedule />} />
+
+        <Route path="/agendar" element={<Booking />} />
       </Routes>
     </BrowserRouter>
   )
