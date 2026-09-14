@@ -1,109 +1,97 @@
-import styles from './Sidebar.module.css'
-import { NavLink } from 'react-router-dom'
 import {
-    IconHome,
-    IconCalendarEvent,
-    IconUsers,
-    IconInfoCircle,
-    IconUserCircle,
-    IconLogout,
-    IconEdit
-} from '@tabler/icons-react'
+  IconCalendarEvent,
+  IconEdit,
+  IconHome,
+  IconInfoCircle,
+  IconLogout,
+  IconUserCircle,
+  IconUsers
+} from "@tabler/icons-react"
+import { Navigate, NavLink, useNavigate } from "react-router-dom"
+import { auth } from "@/lib/auth"
+import styles from "./Sidebar.module.css"
 
 export function Sidebar() {
-    return (
+  const navigate = useNavigate()
+  const { data, isPending } = auth.useSession()
 
-        <aside className={styles.sidebar}>
+  if (isPending) {
+    return <p>Carregando sessão do usuário...</p>
+  }
 
-            <div>
+  if (!data?.user) {
+    return <Navigate to="/login" replace />
+  }
 
-                <h1 className={styles.logo}>
-                    Agendei.com
-                </h1>
+  const handleLogout = async () => {
+    const { error } = await auth.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          navigate("/login", { replace: true })
+        }
+      }
+    })
 
-                <nav className={styles.menu}>
+    if (error) {
+      alert(`Erro ao sair da conta: ${error.message}`)
+      return
+    }
+  }
 
-                    <NavLink
-                        to="/home"
-                        className={({ isActive }) =>
-                            isActive ? styles.active : styles.text
-                        }
-                    >
-                        <IconHome />
-                        Home
-                    </NavLink>
+  return (
+    <aside className={styles.sidebar}>
+      <div>
+        <h1 className={styles.logo}>Agendei.com</h1>
 
-                    <NavLink
-                        to="/agenda"
-                        className={({ isActive }) =>
-                            isActive ? styles.active : styles.text
-                        }
-                    >
-                        <IconCalendarEvent />
-                        Agendas
-                    </NavLink>
+        <nav className={styles.menu}>
+          <NavLink to="/home" className={({ isActive }) => (isActive ? styles.active : styles.text)}>
+            <IconHome />
+            Home
+          </NavLink>
 
-                    <NavLink
-                        to="/clientes"
-                        className={({ isActive }) =>
-                            isActive ? styles.active : styles.text
-                        }
-                    >
-                        <IconUsers />
-                        Clientes
-                    </NavLink>
+          <NavLink to="/agenda" className={({ isActive }) => (isActive ? styles.active : styles.text)}>
+            <IconCalendarEvent />
+            Agendas
+          </NavLink>
 
-                    <NavLink
-                        to="/about"
-                        className={({ isActive }) =>
-                            isActive ? styles.active : styles.text
-                        }
-                    >
-                        <IconInfoCircle />
-                        Sobre nós
-                    </NavLink>
+          <NavLink to="/clientes" className={({ isActive }) => (isActive ? styles.active : styles.text)}>
+            <IconUsers />
+            Clientes
+          </NavLink>
 
-                </nav>
+          <NavLink to="/about" className={({ isActive }) => (isActive ? styles.active : styles.text)}>
+            <IconInfoCircle />
+            Sobre nós
+          </NavLink>
+        </nav>
+      </div>
 
-            </div>
+      <div className={styles.userContainer}>
+        <div className={styles.user}>
+          <div className={styles.avatar}>
+            <IconUserCircle />
+          </div>
 
-            <div className={styles.userContainer}>
+          <div className={styles.userInfo}>
+            <h4>{data.user.name}</h4>
+            <span>{data.user.email}</span>
+          </div>
+        </div>
 
-                <div className={styles.user}>
+        <div className={styles.userMenu}>
+          <NavLink to="/profile">
+            <IconEdit />
+            Editar perfil
+          </NavLink>
 
-                    <div className={styles.avatar}>
-                        <IconUserCircle />
-                    </div>
-
-                    <div className={styles.userInfo}>
-
-                        <h4>Dom Comédia</h4>
-
-                        <span>
-                            dcomedia@gmail.com
-                        </span>
-
-                    </div>
-
-                </div>
-                <div className={styles.userMenu}>
-
-                    <NavLink to="/profile">
-                        <IconEdit />
-                        Editar perfil
-                    </NavLink>
-
-                    <NavLink to="/">
-                        <IconLogout />
-                        Sair da conta
-                    </NavLink>
-
-                </div>
-
-            </div>
-
-        </aside>
-    )
+          <button type="button" onClick={handleLogout}>
+            <IconLogout />
+            Sair da conta
+          </button>
+        </div>
+      </div>
+    </aside>
+  )
 }
 
 export default Sidebar
