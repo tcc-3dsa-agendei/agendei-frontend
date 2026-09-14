@@ -10,7 +10,7 @@ import styles from "./Profile.module.css"
 export function Profile() {
   const [dadosEmpresa, setDadosEmpresa] = useState<OpenCnpj | null>(null)
 
-  const { data } = auth.useSession()
+  const { data, isPending } = auth.useSession()
 
   useEffect(() => {
     if (!data?.user.cnpj) return
@@ -26,8 +26,12 @@ export function Profile() {
     fetchCompanyData()
   }, [data?.user.cnpj])
 
+  if (isPending) {
+    return <p>Carregando sessão do usuário...</p>
+  }
+
   if (!data) {
-    return <Navigate to="/login" replace />
+    return <Navigate to="/login" />
   }
 
   return (

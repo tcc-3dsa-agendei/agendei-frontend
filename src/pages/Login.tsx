@@ -27,7 +27,7 @@ export function Login() {
     }
   })
 
-  const navigate = useNavigate()
+  const _navigate = useNavigate()
 
   const handleSignIn = handleSubmit(async ({ email, password, remember_me }) => {
     await auth.signIn.email({
@@ -35,7 +35,9 @@ export function Login() {
       password,
       rememberMe: remember_me,
       fetchOptions: {
-        onSuccess: () => navigate("/home"),
+        onSuccess: () => {
+          window.location.href = "/home"
+        },
         onError: ({ error }) => alert(`Erro ao logar usuário: ${error.message}`)
       }
     })
