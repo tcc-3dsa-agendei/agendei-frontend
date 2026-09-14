@@ -1,286 +1,167 @@
-import { MainLayout } from "../layout/MainLayout";
-import styles from "./Profile.module.css";
-import form from "../assets/form.png";
-import {
-  IconMail,
-  IconPhone,
-  IconMapPin,
-  IconBriefcase,
-  IconCircleCheck,
-  IconLogout,
-  IconBrandWhatsapp,
-  IconUserCircle
-} from "@tabler/icons-react";
+import { IconCircleCheck, IconMail, IconUserCircle } from "@tabler/icons-react"
+import { useEffect, useState } from "react"
+import { Navigate } from "react-router-dom"
+import { auth } from "@/lib/auth"
+import type { OpenCnpj } from "@/types/open-cnpj"
+import form from "../assets/form.png"
+import { MainLayout } from "../layout/MainLayout"
+import styles from "./Profile.module.css"
 
 export function Profile() {
+  const [dadosEmpresa, setDadosEmpresa] = useState<OpenCnpj | null>(null)
+
+  const { data } = auth.useSession()
+
+  useEffect(() => {
+    if (!data?.user.cnpj) return
+
+    async function fetchCompanyData() {
+      const response = await fetch(`https://api.opencnpj.org/${data?.user.cnpj}?datasets=receita`)
+
+      const result = (await response.json()) as OpenCnpj
+
+      setDadosEmpresa(result)
+    }
+
+    fetchCompanyData()
+  }, [data?.user.cnpj])
+
+  if (!data) {
+    return <Navigate to="/login" replace />
+  }
+
   return (
     <MainLayout>
-
       <div className={styles.page}>
-
         <main className={styles.profile}>
-
-            <div className={styles.header}>
-
-
-                <div className={styles.headerTitle}>
-                    <IconUserCircle />
-                    <div className={styles.title}>
-                        Perfil
-                    </div>
-                </div>
-                <div className={styles.subtitles}>
-                    Visualize e edite suas informações pessoais
+          <div className={styles.header}>
+            <div className={styles.headerTitle}>
+              <IconUserCircle />
+              <div className={styles.title}>Perfil</div>
             </div>
-
-            </div>
-
+            <div className={styles.subtitles}>Visualize e edite suas informações pessoais</div>
+          </div>
 
           <aside className={styles.profileCard}>
-
             <div className={styles.avatar}>
               <div></div>
             </div>
 
-            <h2>
-              Dom Comédia
-            </h2>
+            <h2>{data.user.name}</h2>
 
-            <span className={styles.company}>
-              Microsoft Inc.
-            </span>
+            <span className={styles.company}>Microsoft Inc.</span>
 
             <div className={styles.divider}></div>
 
             <div className={styles.contact}>
-
               <div>
                 <IconMail />
-                <span>dcomedia@gmail.com</span>
+                <span>{data.user.email}</span>
               </div>
 
-              <div>
+              {/* <div>
                 <IconPhone />
-                <span>(19) 99999-9999</span>
-              </div>
-
-              <div>
-                <IconMapPin />
-                <span>Sumaré / SP</span>
-              </div>
-
-              <div>
-                <IconBriefcase />
-                <span>Desenvolvedor</span>
-              </div>
+                <span>{data.user.phoneNumber}</span>
+              </div> */}
 
               <div>
                 <IconCircleCheck />
                 <span>Conta Ativa</span>
               </div>
-
             </div>
 
             <div className={styles.profileActions}>
-
-              <button className={styles.editButton}>
+              <button type="button" className={styles.editButton}>
                 Editar Perfil
               </button>
-
-              <button className={styles.logoutButton}>
-                <IconLogout />
-                Sair da conta
-              </button>
-
-              <button className={styles.whatsappButton}>
-                <IconBrandWhatsapp />
-                Conexão com Whatsapp
-              </button>
-
             </div>
-
           </aside>
 
-
           <section className={styles.content}>
-
-
-
             <div className={styles.form}>
-
-
               <section className={styles.formSection}>
-
-                <h3>
-                  Informações pessoais
-                </h3>
+                <h3>Informações pessoais</h3>
 
                 <div className={styles.formGrid}>
-
                   <div className={styles.field}>
-                    <label>Nome</label>
-                    <input
-                      type="text"
-                      value="Dom Comédia"
-                      readOnly
-                    />
+                    <label htmlFor="profile-name">Nome</label>
+                    <input id="profile-name" type="text" value={data.user.name} readOnly />
                   </div>
 
                   <div className={styles.field}>
-                    <label>CPF</label>
-                    <input
-                      type="text"
-                      value="000.000.000-00"
-                      readOnly
-                    />
+                    <label htmlFor="profile-email">E-mail</label>
+                    <input id="profile-email" type="email" value={data.user.email} readOnly />
                   </div>
 
-                  <div className={styles.field}>
-                    <label>E-mail</label>
-                    <input
-                      type="email"
-                      value="dcomedia@gmail.com"
-                      readOnly
-                    />
-                  </div>
-
-                  <div className={styles.field}>
-                    <label>Gênero</label>
-                    <input
-                      type="text"
-                      value="Masculino"
-                      readOnly
-                    />
-                  </div>
-
-                  <div className={styles.field}>
-                    <label>Senha</label>
-                    <input
-                      type="password"
-                      value="123456789"
-                      readOnly
-                    />
-                  </div>
-
-                  <div className={styles.field}>
-                    <label>Data de Nascimento</label>
-                    <input
-                      type="text"
-                      value="13/05/2009"
-                      readOnly
-                    />
-                  </div>
-
-                  <div className={styles.field}>
+                  {/* <div className={styles.field}>
                     <label>Telefone</label>
-                    <input
-                      type="text"
-                      value="(19) 99999-9999"
-                      readOnly
-                    />
-                  </div>
-
-                  <div className={styles.field}>
-                    <label>Cargo / Função</label>
-                    <input
-                      type="text"
-                      value="Desenvolvedor"
-                      readOnly
-                    />
-                  </div>
-
+                    <input type="text" value={data.user.phoneNumber as string} readOnly />
+                  </div> */}
                 </div>
-
               </section>
-
 
               <section className={styles.formSection}>
-
-                <h3>
-                  Informações da empresa
-                </h3>
+                <h3>Informações da empresa</h3>
 
                 <div className={styles.formGrid}>
-
                   <div className={styles.field}>
-                    <label>Nome da Empresa</label>
+                    <label htmlFor="profile-company-name">Nome da Empresa</label>
                     <input
+                      id="profile-company-name"
                       type="text"
-                      value="Microsoft Inc."
+                      value={dadosEmpresa?.razao_social}
                       readOnly
                     />
                   </div>
 
                   <div className={styles.field}>
-                    <label>Endereço</label>
+                    <label htmlFor="profile-address">Endereço</label>
                     <input
+                      id="profile-address"
                       type="text"
-                      value="Rua dos bobos, número 0"
+                      value={`${dadosEmpresa?.logradouro}, ${dadosEmpresa?.bairro}, ${dadosEmpresa?.numero}`}
                       readOnly
                     />
                   </div>
 
                   <div className={styles.field}>
-                    <label>CNPJ</label>
+                    <label htmlFor="profile-cnpj">CNPJ</label>
+                    <input id="profile-cnpj" type="text" value={data.user.cnpj} readOnly />
+                  </div>
+
+                  <div className={styles.field}>
+                    <label htmlFor="profile-cep">CEP</label>
+                    <input id="profile-cep" type="text" value={dadosEmpresa?.cep} readOnly />
+                  </div>
+
+                  <div className={styles.field}>
+                    <label htmlFor="profile-category">Categoria</label>
                     <input
+                      id="profile-category"
                       type="text"
-                      value="XX.XXX.XXX/XXXX-XX"
+                      value={dadosEmpresa?.cnaes[0].descricao}
                       readOnly
                     />
                   </div>
 
                   <div className={styles.field}>
-                    <label>CEP</label>
-                    <input
-                      type="text"
-                      value="00000-000"
-                      readOnly
-                    />
+                    <label htmlFor="profile-city">Cidade</label>
+                    <input id="profile-city" type="text" value={dadosEmpresa?.municipio} readOnly />
                   </div>
-
-                  <div className={styles.field}>
-                    <label>Categoria</label>
-                    <input
-                      type="text"
-                      value="Tecnologia"
-                      readOnly
-                    />
-                  </div>
-
-                  <div className={styles.field}>
-                    <label>Cidade</label>
-                    <input
-                      type="text"
-                      value="Sumaré / SP"
-                      readOnly
-                    />
-                  </div>
-
                 </div>
-
               </section>
 
-
-              <button className={styles.updateButton}>
+              <button type="submit" className={styles.updateButton}>
                 Atualizar
               </button>
-
             </div>
-
           </section>
-
         </main>
 
-        <img
-              src={form}
-              alt="Formas"
-              className={styles.bottomDecorative}
-            />
-
+        <img src={form} alt="Formas" className={styles.bottomDecorative} />
       </div>
-
     </MainLayout>
-  );
+  )
 }
 
-export default Profile;
+export default Profile
