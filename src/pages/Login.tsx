@@ -1,7 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import z from "zod"
+import { auth } from "@/lib/auth"
 import form from "../assets/form.png"
 import styles from "./Login.module.css"
 
@@ -26,8 +27,18 @@ export function Login() {
     }
   })
 
+  const navigate = useNavigate()
+
   const handleSignIn = handleSubmit(async ({ email, password, remember_me }) => {
-    console.log(email, password, remember_me)
+    await auth.signIn.email({
+      email,
+      password,
+      rememberMe: remember_me,
+      fetchOptions: {
+        onSuccess: () => navigate("/home"),
+        onError: ({ error }) => alert(`Erro ao logar usuário: ${error.message}`)
+      }
+    })
   })
 
   return (

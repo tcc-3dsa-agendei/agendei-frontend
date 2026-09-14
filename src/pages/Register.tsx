@@ -1,9 +1,10 @@
 import { isValidCNPJ, isValidMobilePhone } from "@brazilian-utils/brazilian-utils"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useHookFormMask } from "use-mask-input"
 import { z } from "zod"
+import { auth } from "@/lib/auth"
 import form from "../assets/form.png"
 import duplicate from "./Login.module.css"
 import styles from "./Register.module.css"
@@ -15,7 +16,7 @@ const registerFormSchema = z
     password: z.string().min(6, "Mínimo de 6 caracteres").max(128, "Máximo de 128 caracteres"),
     confirm_password: z.string().min(6, "As senhas não coincidem").max(128, "As senhas não coincidem"),
     phone: z.string().refine(isValidMobilePhone, "Telefone inválido"),
-    tax_id: z.string().refine(isValidCNPJ, "CNPJ inválido")
+    cnpj: z.string().refine(isValidCNPJ, "CNPJ inválido")
   })
   .superRefine(({ password, confirm_password }, ctx) => {
     if (confirm_password !== password) {
@@ -37,10 +38,22 @@ export function Register() {
     reValidateMode: "onBlur"
   })
 
+  const navigate = useNavigate()
+
   const registerWithMask = useHookFormMask(register)
 
-  const handleRegisterUser = handleSubmit(async ({ name, email, password, phone }) => {
-    console.log(name, email, password, phone)
+  const handleRegisterUser = handleSubmit(async ({ name, email, password, phone, cnpj }) => {
+    console.log(phone)
+    await auth.signUp.email({
+      name,
+      email,
+      password,
+      cnpj,
+      fetchOptions: {
+        onSuccess: () => navigate("/login", { replace: true }),
+        onError: ({ error }) => alert(`Erro ao criar usuário: ${error.message}`)
+      }
+    })
   })
 
   return (
@@ -97,9 +110,9 @@ export function Register() {
                 {errors.phone && <p className={styles.error}>{errors.phone.message}</p>}
               </div>
               <div>
-                <label htmlFor="tax_id">CNPJ</label>
-                <input {...registerWithMask("tax_id", "cnpj")} id="tax_id" type="text" />
-                {errors.tax_id && <p className={styles.error}>{errors.tax_id.message}</p>}
+                <label htmlFor="cnpj">CNPJ</label>
+                <input {...registerWithMask("cnpj", "cnpj")} id="cnpj" type="text" />
+                {errors.cnpj && <p className={styles.error}>{errors.cnpj.message}</p>}
               </div>
             </div>
 
