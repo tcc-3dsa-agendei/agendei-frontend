@@ -1,23 +1,124 @@
-.footer{
-    height: 70px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-     background: linear-gradient(
-  90deg,
-  var(--cor-primaria5) 0%,
-  var(--cor-primaria3) 100%
-);
-
-    color: var(--cor-secundaria1);
-    font-size: var(--texto-pq);
-    gap: 5px;
+.footer {
+  width: 100%;
+  background: linear-gradient(
+    135deg,
+    var(--cor-primaria5) 0%,
+    var(--cor-primaria4) 50%,
+    var(--cor-primaria3) 100%
+  );
+  color: var(--cor-secundaria1);
+  padding: 60px 7% 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.footer p{
-    color: var(--cor-secundaria1);
-    font-size: var(--texto-pq);
-    font-weight: var(--peso-regular);
-    margin: 0;
+.container {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.brandTitle {
+  font-size: var(--titulo-sm);
+  font-weight: var(--peso-bold);
+  color: var(--cor-secundaria1);
+  letter-spacing: -0.5px;
+}
+
+.brandTitle span {
+  color: var(--cor-secundaria3);
+}
+
+.brandDescription {
+  font-size: var(--texto-sm);
+  color: var(--cor-secundaria3);
+  line-height: 1.6;
+  max-width: 320px;
+}
+
+.colTitle {
+  font-size: var(--texto-md);
+  font-weight: var(--peso-semibold);
+  color: var(--cor-secundaria1);
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.navList,
+.contactList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.navList a,
+.contactList a {
+  color: var(--cor-secundaria3);
+  text-decoration: none;
+  font-size: var(--texto-sm);
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+  display: inline-block;
+}
+
+.navList a:hover,
+.contactList a:hover {
+  color: var(--cor-secundaria1);
+  transform: translateX(3px);
+}
+
+.contactList span {
+  font-size: var(--texto-pq);
+  color: var(--cor-secundaria4);
+}
+
+.divider {
+  width: 100%;
+  max-width: 1200px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin-bottom: 24px;
+}
+
+.bottomBar {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--texto-pq);
+  color: var(--cor-secundaria3);
+}
+
+.academicNotice {
+  font-size: var(--texto-pq);
+  color: var(--cor-secundaria4);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .bottomBar {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
 }

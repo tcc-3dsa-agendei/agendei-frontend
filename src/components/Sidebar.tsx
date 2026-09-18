@@ -2,7 +2,6 @@ import {
   IconCalendarEvent,
   IconEdit,
   IconHome,
-  IconInfoCircle,
   IconLogout,
   IconUserCircle,
   IconUsers
@@ -57,11 +56,6 @@ export function Sidebar() {
           <NavLink to="/clientes" className={({ isActive }) => (isActive ? styles.active : styles.text)}>
             <IconUsers />
             Clientes
-          </NavLink>
-
-          <NavLink to="/about" className={({ isActive }) => (isActive ? styles.active : styles.text)}>
-            <IconInfoCircle />
-            Sobre nós
           </NavLink>
         </nav>
       </div>
