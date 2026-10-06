@@ -4,6 +4,7 @@ import { env } from "@/env"
 
 export const auth = createAuthClient({
   baseURL: env.VITE_BACKEND_URL,
+  fetchOptions: { credentials: "include" },
   plugins: [
     inferAdditionalFields({
       user: {
