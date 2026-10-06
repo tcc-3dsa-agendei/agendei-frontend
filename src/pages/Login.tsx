@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import z from "zod"
 import { auth } from "@/lib/auth"
 import form from "../assets/form.png"
@@ -8,7 +9,7 @@ import styles from "./Login.module.css"
 
 const loginFormSchema = z.object({
   email: z.email("E-mail inválido").max(255, "Máximo de 255 caracteres"),
-  password: z.string().min(6, "Mínimo de 6 caracteres").max(128, "Máximo de 128 caracteres"),
+  password: z.string().min(8, "Mínimo de 8 caracteres").max(128, "Máximo de 128 caracteres"),
   remember_me: z.boolean().default(true).optional()
 })
 
@@ -27,25 +28,37 @@ export function Login() {
     }
   })
 
-  const _navigate = useNavigate()
+  const navigate = useNavigate()
+  const location = useLocation()
+  const { refetch } = auth.useSession()
+  const [submitError, setSubmitError] = useState("")
 
   const handleSignIn = handleSubmit(async ({ email, password, remember_me }) => {
-    await auth.signIn.email({
-      email,
-      password,
-      rememberMe: remember_me,
-      fetchOptions: {
-        onSuccess: () => {
-          window.location.href = "/home"
-        },
-        onError: ({ error }) => alert(`Erro ao logar usuário: ${error.message}`)
+    setSubmitError("")
+    try {
+      const { error } = await auth.signIn.email({ email, password, rememberMe: remember_me })
+      if (error) {
+        setSubmitError(error.message ?? "Não foi possível entrar.")
+        return
       }
-    })
+
+      await refetch()
+
+      const destination = location.state?.from
+      navigate(
+        typeof destination === "string" && destination.startsWith("/") && !destination.startsWith("//")
+          ? destination
+          : "/home",
+        { replace: true }
+      )
+    } catch {
+      setSubmitError("Não foi possível conectar ao servidor. Tente novamente.")
+    }
   })
 
   return (
     <div className={styles.container}>
-      <img src={form} alt="Formas" className={styles.topDecorative} />
+      <img src={form} alt="" className={styles.topDecorative} />
 
       <div className={styles.lineTop}>
         <span></span>
@@ -76,22 +89,53 @@ export function Login() {
 
             <div>
               <label htmlFor="email">Seu e-mail</label>
-              <input {...register("email")} type="email" id="email" placeholder="Ex.: empresa@email.com" />
-              {errors.email && <p className={styles.error}>{errors.email.message}</p>}
+              <input
+                {...register("email")}
+                type="email"
+                id="email"
+                autoComplete="email"
+                aria-invalid={Boolean(errors.email)}
+                aria-describedby={errors.email ? "email-error" : undefined}
+                placeholder="Ex.: empresa@email.com"
+              />
+              {errors.email && (
+                <p id="email-error" className={styles.error}>
+                  {errors.email.message}
+                </p>
+              )}
             </div>
 
             <div>
               <label htmlFor="password">Sua senha</label>
-              <input {...register("password")} type="password" id="password" placeholder="Sua senha" />
-              {errors.password && <p className={styles.error}>{errors.password.message}</p>}
+              <input
+                {...register("password")}
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                aria-invalid={Boolean(errors.password)}
+                aria-describedby={errors.password ? "password-error" : undefined}
+                placeholder="Sua senha"
+              />
+              {errors.password && (
+                <p id="password-error" className={styles.error}>
+                  {errors.password.message}
+                </p>
+              )}
             </div>
 
             <div className={styles.remember}>
-              <input {...register("remember_me")} type="checkbox" />
-              <span>Manter-se conectado</span>
+              <input {...register("remember_me")} type="checkbox" id="remember-me" />
+              <label htmlFor="remember-me">
+                <span>Manter-se conectado</span>
+              </label>
             </div>
 
-            <button className={styles.confirm} type="submit">
+            {submitError && (
+              <p role="alert" className={styles.error}>
+                {submitError}
+              </p>
+            )}
+            <button className={styles.confirm} type="submit" disabled={isSubmitting}>
               {isSubmitting ? "Entrando..." : "Entrar"}
             </button>
           </form>
@@ -102,7 +146,7 @@ export function Login() {
         <span></span>
       </div>
 
-      <img src={form} alt="Formas" className={styles.bottomDecorative} />
+      <img src={form} alt="" className={styles.bottomDecorative} />
     </div>
   )
 }

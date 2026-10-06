@@ -1,4 +1,5 @@
-import { IconCalendarEvent, IconChartBar, IconClock, IconSettings, IconUsers } from "@tabler/icons-react"
+import { IconCalendarEvent, IconClock, IconListDetails, IconSettings, IconUsers } from "@tabler/icons-react"
+import { Link, useNavigate } from "react-router-dom"
 import form from "../assets/form.png"
 import logo from "../assets/logo.png"
 import notebook from "../assets/notebook.jpg"
@@ -6,10 +7,11 @@ import { MainLayout } from "../layout/MainLayout"
 import styles from "./Home.module.css"
 
 export function Home() {
+  const navigate = useNavigate()
   return (
     <MainLayout>
       <div className={styles.page}>
-        <main className={styles.main}>
+        <div className={styles.main}>
           <section className={styles.hero}>
             <div className={styles.heroContent}>
               <p className={styles.eyebrow}>Bem-vindo ao Agendei.com</p>
@@ -26,11 +28,11 @@ export function Home() {
               </p>
 
               <div className={styles.ctaGroup}>
-                <button type="button" className={styles.btnPrimary}>
-                  Saiba mais
+                <button type="button" className={styles.btnPrimary} onClick={() => navigate("/agendar")}>
+                  Agendar atendimento
                 </button>
 
-                <button type="button" className={styles.btnSecondary}>
+                <button type="button" className={styles.btnSecondary} onClick={() => navigate("/agenda")}>
                   Acessar agenda
                 </button>
               </div>
@@ -50,16 +52,16 @@ export function Home() {
           </section>
 
           <section className={styles.featuresSection}>
-            <img src={form} alt="Formas" className={styles.topDecorative} />
+            <img src={form} alt="" className={styles.topDecorative} />
 
-            <h2 className={styles.featuresTitle}>Principais Funcionalidades</h2>
+            <h2 className={styles.featuresTitle}>Acessos rápidos</h2>
 
             <div className={styles.featuresLine}>
               <span></span>
             </div>
 
             <div className={styles.featuresGrid}>
-              <div className={styles.featureCard}>
+              <Link to="/agenda" className={styles.featureCard}>
                 <div className={styles.featureIcon}>
                   <IconCalendarEvent />
                 </div>
@@ -67,11 +69,11 @@ export function Home() {
                 <h3 className={styles.featureTitle}>Gestão de Agendamentos</h3>
 
                 <p className={styles.featureText}>
-                  Crie, edite e gerencie agendamentos de forma prática e rápida.
+                  Consulte os atendimentos e configure os dias e horários de expediente.
                 </p>
-              </div>
+              </Link>
 
-              <div className={styles.featureCard}>
+              <Link to="/clientes" className={styles.featureCard}>
                 <div className={styles.featureIcon}>
                   <IconUsers />
                 </div>
@@ -79,33 +81,31 @@ export function Home() {
                 <h3 className={styles.featureTitle}>Gestão de Clientes</h3>
 
                 <p className={styles.featureText}>
-                  Mantenha todas as informações dos seus clientes organizadas.
+                  Encontre clientes e acompanhe a situação de suas reservas.
                 </p>
-              </div>
+              </Link>
 
-              <div className={styles.featureCard}>
+              <Link to="/servicos" className={styles.featureCard}>
                 <div className={styles.featureIcon}>
-                  <IconChartBar />
+                  <IconListDetails />
                 </div>
 
-                <h3 className={styles.featureTitle}>Relatórios</h3>
+                <h3 className={styles.featureTitle}>Serviços</h3>
 
-                <p className={styles.featureText}>
-                  Acompanhe estatísticas e indicadores importantes do seu negócio.
-                </p>
-              </div>
+                <p className={styles.featureText}>Cadastre serviços e revise duração, descrição e preço.</p>
+              </Link>
 
-              <div className={styles.featureCard}>
+              <Link to="/profile" className={styles.featureCard}>
                 <div className={styles.featureIcon}>
                   <IconSettings />
                 </div>
 
-                <h3 className={styles.featureTitle}>Personalização</h3>
+                <h3 className={styles.featureTitle}>Meu perfil</h3>
 
                 <p className={styles.featureText}>
-                  Configure serviços, horários e preferências de acordo com sua necessidade.
+                  Confira os dados da sua conta e as informações da empresa.
                 </p>
-              </div>
+              </Link>
             </div>
           </section>
 
@@ -139,9 +139,9 @@ export function Home() {
               </div>
             </div>
 
-            <img src={form} alt="Formas" className={styles.bottomDecorative} />
+            <img src={form} alt="" className={styles.bottomDecorative} />
           </section>
-        </main>
+        </div>
       </div>
     </MainLayout>
   )

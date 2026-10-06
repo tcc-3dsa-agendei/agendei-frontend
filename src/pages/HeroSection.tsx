@@ -38,13 +38,13 @@ const teamMembers: TeamMember[] = [
 export function HeroSection() {
   const handleLearnMore = () => {
     document.getElementById("sobre-nos")?.scrollIntoView({
-      behavior: "smooth"
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
     })
   }
 
   const handleTeamScroll = () => {
     document.getElementById("nossa-equipe")?.scrollIntoView({
-      behavior: "smooth"
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
     })
   }
 

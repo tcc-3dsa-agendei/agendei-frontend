@@ -1,5 +1,6 @@
-import { isValidCNPJ, isValidMobilePhone } from "@brazilian-utils/brazilian-utils"
+import { isValidCNPJ } from "@brazilian-utils/brazilian-utils"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom"
 import { useHookFormMask } from "use-mask-input"
@@ -13,10 +14,12 @@ const registerFormSchema = z
   .object({
     name: z.string().min(3, "Mínimo de 3 caracteres").max(255, "Máximo de 255 caracteres"),
     email: z.email("E-mail inválido").max(255, "Máximo de 255 caracteres"),
-    password: z.string().min(6, "Mínimo de 6 caracteres").max(128, "Máximo de 128 caracteres"),
-    confirm_password: z.string().min(6, "As senhas não coincidem").max(128, "As senhas não coincidem"),
-    phone: z.string().refine(isValidMobilePhone, "Telefone inválido"),
-    cnpj: z.string().refine(isValidCNPJ, "CNPJ inválido")
+    password: z.string().min(8, "Mínimo de 8 caracteres").max(128, "Máximo de 128 caracteres"),
+    confirm_password: z.string().min(8, "Mínimo de 8 caracteres").max(128, "As senhas não coincidem"),
+    cnpj: z
+      .string()
+      .transform((value) => value.replace(/\D/g, ""))
+      .refine(isValidCNPJ, "CNPJ inválido")
   })
   .superRefine(({ password, confirm_password }, ctx) => {
     if (confirm_password !== password) {
@@ -39,26 +42,35 @@ export function Register() {
   })
 
   const navigate = useNavigate()
+  const { refetch } = auth.useSession()
 
   const registerWithMask = useHookFormMask(register)
 
-  const handleRegisterUser = handleSubmit(async ({ name, email, password, phone, cnpj }) => {
-    console.log(phone)
-    await auth.signUp.email({
-      name,
-      email,
-      password,
-      cnpj,
-      fetchOptions: {
-        onSuccess: () => navigate("/login", { replace: true }),
-        onError: ({ error }) => alert(`Erro ao criar usuário: ${error.message}`)
+  const [submitError, setSubmitError] = useState("")
+  const handleRegisterUser = handleSubmit(async ({ name, email, password, cnpj }) => {
+    setSubmitError("")
+    try {
+      const { error } = await auth.signUp.email({ name, email, password, cnpj })
+      if (error) {
+        setSubmitError(
+          error.code === "CNPJ_ALREADY_REGISTERED"
+            ? "Este CNPJ já está cadastrado."
+            : (error.message ?? "Não foi possível criar sua conta.")
+        )
+        return
       }
-    })
+
+      await refetch()
+
+      navigate("/home", { replace: true })
+    } catch {
+      setSubmitError("Não foi possível conectar ao servidor. Tente novamente.")
+    }
   })
 
   return (
     <div className={styles.container}>
-      <img src={form} alt="Formas" className={styles.topDecorative} />
+      <img src={form} alt="" className={styles.topDecorative} />
 
       <div className={styles.lineTopo}>
         <span></span>
@@ -76,13 +88,37 @@ export function Register() {
             <div className={styles.inputsGrid}>
               <div>
                 <label htmlFor="name">Seu nome completo</label>
-                <input {...register("name")} type="text" id="name" placeholder="Ex.: João da Silva" />
-                {errors.name && <p className={styles.error}>{errors.name.message}</p>}
+                <input
+                  {...register("name")}
+                  type="text"
+                  id="name"
+                  autoComplete="name"
+                  aria-invalid={Boolean(errors.name)}
+                  aria-describedby={errors.name ? "name-error" : undefined}
+                  placeholder="Ex.: João da Silva"
+                />
+                {errors.name && (
+                  <p id="name-error" className={styles.error}>
+                    {errors.name.message}
+                  </p>
+                )}
               </div>
               <div>
                 <label htmlFor="email">Seu e-mail</label>
-                <input {...register("email")} id="email" type="email" placeholder="Ex.: empresa@email.com" />
-                {errors.email && <p className={styles.error}>{errors.email.message}</p>}
+                <input
+                  {...register("email")}
+                  id="email"
+                  type="email"
+                  autoComplete="email"
+                  aria-invalid={Boolean(errors.email)}
+                  aria-describedby={errors.email ? "email-error" : undefined}
+                  placeholder="Ex.: empresa@email.com"
+                />
+                {errors.email && (
+                  <p id="email-error" className={styles.error}>
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
               <div>
                 <label htmlFor="password">Crie sua senha</label>
@@ -90,9 +126,16 @@ export function Register() {
                   {...register("password")}
                   id="password"
                   type="password"
-                  placeholder="Mínimo de 6 caracteres"
+                  autoComplete="new-password"
+                  aria-invalid={Boolean(errors.password)}
+                  aria-describedby={errors.password ? "password-error" : undefined}
+                  placeholder="Mínimo de 8 caracteres"
                 />
-                {errors.password && <p className={styles.error}>{errors.password.message}</p>}
+                {errors.password && (
+                  <p id="password-error" className={styles.error}>
+                    {errors.password.message}
+                  </p>
+                )}
               </div>
               <div>
                 <label htmlFor="confirm_password">Confirme sua senha</label>
@@ -100,23 +143,43 @@ export function Register() {
                   {...register("confirm_password")}
                   id="confirm_password"
                   type="password"
+                  autoComplete="new-password"
+                  aria-invalid={Boolean(errors.confirm_password)}
+                  aria-describedby={errors.confirm_password ? "confirm-password-error" : undefined}
                   placeholder="Confirme sua senha"
                 />
-                {errors.confirm_password && <p className={styles.error}>{errors.confirm_password.message}</p>}
-              </div>
-              <div>
-                <label htmlFor="phone">Seu telefone</label>
-                <input {...registerWithMask("phone", "phone-br")} id="phone" type="text" />
-                {errors.phone && <p className={styles.error}>{errors.phone.message}</p>}
+                {errors.confirm_password && (
+                  <p id="confirm-password-error" className={styles.error}>
+                    {errors.confirm_password.message}
+                  </p>
+                )}
               </div>
               <div>
                 <label htmlFor="cnpj">CNPJ</label>
-                <input {...registerWithMask("cnpj", "cnpj")} id="cnpj" type="text" />
-                {errors.cnpj && <p className={styles.error}>{errors.cnpj.message}</p>}
+                <input
+                  {...registerWithMask("cnpj", "cnpj")}
+                  id="cnpj"
+                  type="text"
+                  inputMode="numeric"
+                  aria-invalid={Boolean(errors.cnpj)}
+                  aria-describedby={errors.cnpj ? "cnpj-error" : undefined}
+                />
+                {errors.cnpj && (
+                  <p id="cnpj-error" className={styles.error}>
+                    {errors.cnpj.message}
+                  </p>
+                )}
               </div>
             </div>
 
-            <button type="submit">{isSubmitting ? "Aguarde..." : "Cadastrar"}</button>
+            {submitError && (
+              <p role="alert" className={styles.error}>
+                {submitError}
+              </p>
+            )}
+            <button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Aguarde..." : "Cadastrar"}
+            </button>
           </form>
         </div>
 
@@ -138,7 +201,7 @@ export function Register() {
         <span></span>
       </div>
 
-      <img src={form} alt="Formas" className={styles.bottomDecorative} />
+      <img src={form} alt="" className={styles.bottomDecorative} />
     </div>
   )
 }

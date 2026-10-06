@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -283,4 +284,84 @@
   transform: scaleY(-1);
 
   z-index: 2;
+}
+
+.topDecorative,
+.bottomDecorative,
+.lineTop,
+.lineBottom {
+  pointer-events: none;
+}
+.formContainer input:focus-visible {
+  outline: 2px solid var(--cor-primaria1);
+  outline-offset: 3px;
+}
+.formContainer .remember label {
+  margin: 0;
+  cursor: pointer;
+}
+.formContainer button:disabled {
+  cursor: wait;
+  transform: none;
+}
+.rightSide {
+  overflow-y: auto;
+}
+.formContainer {
+  min-height: min-content;
+  padding-block: 55px 30px;
+}
+
+@media (max-width: 1024px) {
+  .formContainer input[type="text"],
+  .formContainer input[type="email"],
+  .formContainer input[type="password"],
+  .remember {
+    max-width: 100%;
+  }
+  .formContainer > div {
+    max-width: 100%;
+  }
+}
+@media (max-width: 760px) {
+  .container {
+    min-height: 100dvh;
+    height: auto;
+    padding: 25px 12px;
+  }
+  .card {
+    height: auto;
+    flex-direction: column;
+  }
+  .rightSide {
+    width: 100%;
+    height: auto;
+    order: -1;
+    border-radius: 25px 25px 0 0;
+  }
+  .leftSide {
+    width: 100%;
+    height: auto;
+    padding: 30px 20px;
+    border-radius: 0 0 25px 25px;
+  }
+  .formContainer {
+    height: auto;
+    padding: 65px 20px 30px;
+    align-items: stretch;
+  }
+  .formContainer input[type="text"],
+  .formContainer input[type="email"],
+  .formContainer input[type="password"],
+  .remember {
+    width: 100%;
+  }
+  .formContainer button {
+    align-self: center;
+    max-width: 100%;
+  }
+  .lineTop,
+  .lineBottom {
+    display: none;
+  }
 }

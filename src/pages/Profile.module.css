@@ -1,490 +1,482 @@
 .page {
-  width: 100%;
-
-  min-height: 100vh;
-
-  background: linear-gradient(
-    90deg,
-    var(--cor-secundaria2) 50%,
-    var(--cor-secundaria3) 100%
-  );
-
-  position: relative;
-
-  padding: 0 20px 40px;
-
-  box-sizing: border-box;
-
-  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  min-height: 100%;
+  padding: 42px 36px 56px;
+  color: #173b38;
+  background:
+    radial-gradient(circle at top right, rgb(26 114 108 / 10%), transparent 34rem),
+    linear-gradient(180deg, #f7faf9 0%, #f1f6f5 100%);
 }
 
-.header {
-  position: absolute;
-  top: 20px;
-  left: 20px;
+.container {
+  width: min(100%, 1120px);
+  margin: 0 auto;
+}
+
+.profileHeader {
   display: flex;
-  flex-direction: column; 
-  justify-content: center;
-  z-index: 2; 
+  align-items: center;
+  gap: 22px;
+  min-height: 172px;
+  padding: 30px 34px;
+  border: 1px solid rgb(255 255 255 / 42%);
+  border-radius: 22px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 88% 18%, rgb(255 255 255 / 13%), transparent 17rem),
+    linear-gradient(135deg, var(--cor-primaria3), var(--cor-primaria1));
+  box-shadow: 0 18px 44px rgb(8 55 52 / 18%);
 }
 
-
-.headerTitle {
-  display: flex;
-  align-items: center; 
-  gap: 8px;          
+.avatarBadge {
+  display: grid;
+  place-items: center;
+  width: 92px;
+  height: 92px;
+  flex: 0 0 92px;
+  border: 3px solid rgb(255 255 255 / 74%);
+  border-radius: 50%;
+  color: var(--cor-primaria3);
+  background: #fff;
+  box-shadow: 0 10px 26px rgb(4 45 42 / 28%);
+  font-size: 1.75rem;
+  font-weight: var(--peso-bold);
+  letter-spacing: 0.04em;
 }
 
-.header svg {
-  width: 35px;
-  height: 35px;
-  color: var(--cor-secundaria1);
-  flex-shrink: 0;      
+.identity {
+  min-width: 0;
 }
 
-.title {
-  font-size: var(--texto-sg);
+.eyebrow {
+  display: block;
+  margin-bottom: 5px;
+  color: rgb(255 255 255 / 72%);
+  font-size: var(--texto-sp);
   font-weight: var(--peso-semibold);
-  color: var(--cor-secundaria1);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.identity h1 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.55rem, 3vw, 2rem);
+  line-height: 1.2;
+}
+
+.identity p {
+  margin: 7px 0 0;
+  color: rgb(255 255 255 / 82%);
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.badgeActive {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-left: auto;
+  padding: 8px 13px;
+  border: 1px solid rgb(255 255 255 / 32%);
+  border-radius: 999px;
+  color: #e8fff5;
+  background: rgb(9 75 55 / 52%);
+  font-size: var(--texto-sp);
+  font-weight: var(--peso-semibold);
+  white-space: nowrap;
+}
+
+.badgeActive svg {
+  width: 18px;
+  height: 18px;
+}
+
+.card {
+  margin-top: 22px;
+  padding: 28px 30px;
+  border: 1px solid #dce7e5;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 10px 32px rgb(27 65 62 / 7%);
+}
+
+.cardHeading {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e7eeed;
+}
+
+.cardIcon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 12px;
+  color: var(--cor-primaria2);
+  background: #e8f4f2;
+}
+
+.cardIcon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.cardHeading h2 {
+  margin: 0;
+  color: #153f3b;
+  font-size: 1.08rem;
+  line-height: 1.35;
+}
+
+.cardHeading p {
+  margin: 4px 0 0;
+  color: #6a7e7b;
+  font-size: var(--texto-sp);
+}
+
+.successBanner {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 20px;
+  padding: 12px 14px;
+  border: 1px solid #bfe3d0;
+  border-radius: 10px;
+  color: #14603f;
+  background: #eaf8f0;
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medium);
+}
+
+.successBanner svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+}
+
+.personalGrid {
+  align-items: start;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr 0.85fr;
+  gap: 18px;
+}
+
+.field {
+  min-width: 0;
+}
+
+.fieldLabel,
+.fieldLabelRow label {
+  color: #506966;
+  font-size: var(--texto-sp);
+  font-weight: var(--peso-semibold);
+}
+
+.fieldLabelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 28px;
+  margin-bottom: 7px;
+}
+
+.field > .fieldLabel {
+  display: block;
+  min-height: 28px;
+  margin-bottom: 7px;
+  padding-top: 5px;
+}
+
+.fieldValue {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 45px;
+  padding: 10px 12px;
+  border: 1px solid #d7e2e0;
+  border-radius: 10px;
+  color: #264c48;
+  background: #f8faf9;
+  font-size: var(--texto-sm);
+}
+
+.fieldValue svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  color: #67817e;
+}
+
+.fieldValue span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.fieldValue .lockIcon {
+  width: 15px;
+  height: 15px;
+  margin-left: auto;
+  color: #78908d;
+}
+
+.editButton,
+.saveButton,
+.cancelButton,
+.apiFeedback button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 8px;
+  font: inherit;
+  font-size: var(--texto-sp);
+  font-weight: var(--peso-semibold);
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.editButton {
+  padding: 5px 8px;
+  border: 0;
+  color: var(--cor-primaria2);
+  background: transparent;
+}
+
+.editButton:hover {
+  color: var(--cor-primaria3);
+  background: #edf7f5;
+}
+
+.editButton svg,
+.saveButton svg,
+.cancelButton svg {
+  width: 16px;
+  height: 16px;
+}
+
+.nameForm input {
+  width: 100%;
+  min-height: 45px;
+  padding: 10px 12px;
+  border: 1px solid #8eaaa6;
+  border-radius: 10px;
+  color: #173b38;
+  background: #fff;
+  font: inherit;
+  font-size: var(--texto-sm);
+}
+
+.nameForm input[aria-invalid="true"] {
+  border-color: #c94349;
+}
+
+.editActions {
+  flex-wrap: wrap;
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.saveButton,
+.cancelButton,
+.apiFeedback button {
+  min-height: 36px;
+  padding: 7px 12px;
+  border: 1px solid var(--cor-primaria1);
+}
+
+.saveButton,
+.apiFeedback button {
+  color: #fff;
+  background: var(--cor-primaria1);
+}
+
+.saveButton:hover,
+.apiFeedback button:hover {
+  background: var(--cor-primaria2);
+}
+
+.cancelButton {
+  color: #395d59;
+  background: #fff;
+  border-color: #becdcb;
+}
+
+.cancelButton:hover {
+  border-color: #8ba39f;
+  background: #f4f7f6;
+}
+
+.editButton:disabled,
+.saveButton:disabled,
+.cancelButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.fieldError {
+  margin: 8px 0 0;
+  color: #a92a31;
+  font-size: var(--texto-sp);
+}
+
+.page button:focus-visible,
+.page input:focus-visible {
+  outline: 3px solid #79c1b9;
+  outline-offset: 2px;
+}
+
+.apiFeedback > p,
+.emptyState {
+  margin: 4px 0;
+  padding: 18px;
+  border-radius: 10px;
+  color: #667c79;
+  background: #f7faf9;
+  font-size: var(--texto-sm);
+  text-align: center;
+}
+
+.apiFeedback [role="alert"] {
+  margin-bottom: 18px;
+  font-size: var(--texto-sm);
+}
+
+.apiFeedback button {
+  margin-left: 8px;
+}
+
+.companyGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 30px;
   margin: 0;
 }
 
-.subtitles {
+.companyField {
+  display: flex;
+  gap: 12px;
+  min-width: 0;
+  padding: 17px 2px;
+  border-bottom: 1px solid #e9efee;
+}
+
+.companyField > svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  margin-top: 2px;
+  color: var(--cor-primaria1);
+}
+
+.companyField div {
+  min-width: 0;
+}
+
+.companyField dt {
+  margin-bottom: 5px;
+  color: #6d817e;
+  font-size: var(--texto-sp);
+  font-weight: var(--peso-medium);
+}
+
+.companyField dd {
+  margin: 0;
+  color: #203f3c;
   font-size: var(--texto-sm);
-  font-weight: var(--peso-light);
-  color: var(--cor-secundaria1);
-  margin: 6px 0 0 0;
+  font-weight: var(--peso-semibold);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
 }
 
-.profile {
-    display: flex;
-
-    align-items: stretch;
-
-    gap: 20px;
-
-    width: 100%;
-    max-width: 1200px;
-
-    min-height: calc(100vh - 110px);
-
-    margin: 0 auto;
-
-    position: relative;
-
-    z-index: 1;
-    
-    padding: 100px 0 0;
+.wideField {
+  grid-column: span 2;
 }
-
-
-.profileCard {
-    width: 230px;
-
-    flex-shrink: 0;
-
-    align-self: stretch;
-
-    padding: 30px 18px;
-
-    box-sizing: border-box;
-
-    background-color: var(--cor-secundaria1);
-
-    border-radius: 12px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.avatar {
-    width: 90px;
-    height: 90px;
-
-    border-radius: 50%;
-
-    background-color: var(--cor-secundaria4);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin-bottom: 18px;
-}
-
-.avatar div {
-    width: 100%;
-    height: 100%;
-
-    border-radius: 50%;
-
-    background-color: var(--cor-secundaria4);
-}
-
-
-.profileCard h2 {
-    margin: 0;
-
-    font-size: var(--texto-md);
-
-    font-weight: var(--peso-bold);
-
-    color: #111111;
-
-    text-align: center;
-}
-
-
-.company {
-    margin-top: 3px;
-
-    font-size: var(--texto-sp);
-
-    color: var(--cor-primaria3);
-
-    font-weight: var(--peso-medium);
-}
-
-
-
-.divider {
-    width: 100%;
-
-    height: 2px;
-
-    margin: 33px 0;
-
-    background-color: var(--cor-secundaria2);
-}
-
-
-
-.contact {
-    width: 100%;
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 35px;
-}
-
-
-.contact div {
-    display: flex;
-    align-items: center;
-
-    gap: 8px;
-
-    width: 100%;
-}
-
-
-.contact svg {
-    width: 17px;
-    height: 17px;
-
-    flex-shrink: 0;
-
-    color: #222222;
-    margin-left: 10px;
-}
-
-
-.contact span {
-    font-size: var(--texto-pq);
-
-    color: var(--cor-secundaria6);
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-}
-
-
-
-.contact div:last-child svg {
-    color: var(--cor-primaria1);
-}
-
-
-
-.profileActions {
-    width: 100%;
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 8px;
-
-    margin-top: auto;
-}
-
-
-.profileActions button {
-    width: 100%;
-
-    border: none;
-
-    border-radius: 6px;
-
-    padding: 10px 8px;
-
-    box-sizing: border-box;
-
-    font-family: inherit;
-
-    font-size: var(--texto-sp);
-
-    font-weight: var(--peso-medium);
-
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-
-    gap: 6px;
-
-    transition: .2s;
-}
-
-
-.editButton {
-    color: var(--cor-secundaria1);
-
-    background-color: var(--cor-primaria3);
-    
-    justify-content: center;
-}
-
-
-.editButton:hover {
-    background-color: var(--cor-primaria2);
-}
-
-
-.logoutButton,
-.whatsappButton {
-    color: var(--cor-terciaria);
-
-    background-color: var(--cor-secundaria1);
-
-    justify-content: flex-start;
-}
-
-
-.logoutButton:hover,
-.whatsappButton:hover {
-    color: var(--cor-secundaria4);
-}
-
-
-.profileActions svg {
-    width: 16px;
-    height: 16px;
-}
-
-
-
-.content {
-    flex: 1;
-
-    min-width: 0;
-
-    background-color: var(--cor-secundaria1);
-
-    border-radius: 12px;
-
-    padding: 12px 15px 15px;
-
-    box-sizing: border-box;
-}
-
-
-
-.form {
-    width: 100%;
-
-    background-color: var(--cor-secundaria1);
-
-    border-radius: 6px;
-}
-
-
-.formSection {
-    padding: 18px;
-
-    margin-bottom: 14px;
-
-    background-color: var(--cor-secundaria1);
-
-    border-radius: 10px;
-
-}
-
-
-.formSection h3 {
-    margin: 0 0 12px;
-
-    font-size: var(--texto-sm);
-
-    font-weight: var(--peso-medium);
-
-    color: var(--cor-primaria4);
-}
-
-
-
-.formGrid {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    column-gap: 25px;
-
-    row-gap: 12px;
-}
-
-
-.field {
-    display: flex;
-    flex-direction: column;
-
-    gap: 3px;
-}
-
-
-.field label {
-    font-size: var(--texto-sp);
-
-    color: var(--cor-secundaria5);
-}
-
-
-.field input {
-    width: 100%;
-
-    height: 34px;
-
-    padding: 0 15px;
-
-    box-sizing: border-box;
-
-    border: none;
-
-    border-radius: 8px;
-
-    background-color: var(--cor-secundaria2);
-
-    color: #555555;
-
-    font-family: inherit;
-
-    font-size: var(--texto-sp);
-
-    outline: none;
-}
-
-
-.updateButton {
-    padding: 10px 20px;
-
-    border: none;
-
-    border-radius: 6px;
-
-    background-color: var(--cor-primaria3);
-
-    color: var(--cor-secundaria1);
-
-    font-family: inherit;
-
-    font-size: var(--texto-sp);
-
-    font-weight: var(--peso-medium);
-
-    cursor: pointer;
-
-    transition: .2s;
-
-    margin-left: 20px;
-}
-
-.updateButton:hover {
-    background-color: var(--cor-primaria2);
-}
-
-
-
-.page::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 170px;
-
-    background: linear-gradient(
-    120deg,
-    var(--cor-primaria5) 0%,
-    var(--cor-primaria3) 100%
-  );
-
-    z-index: 0;
-}
-
-.bottomDecorative {
-  position: absolute;
-
-  right: 0;
-  bottom: -1px;
-
-  width: 110px;
-  height: auto;
-
-  transform: scaleX(-1) scaleY(-1);
-
-  z-index: 0;
-}
-
-
 
 @media (max-width: 900px) {
+  .personalGrid {
+    grid-template-columns: 1fr;
+  }
 
-    .profile {
-        flex-direction: column;
-    }
-
-    .profileCard {
-        width: 100%;
-    }
-
-    .contact {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .contact div {
-        width: auto;
-    }
-
+  .field > .fieldLabel,
+  .fieldLabelRow {
+    min-height: auto;
+  }
 }
 
-
 @media (max-width: 600px) {
+  .page {
+    padding: 22px 14px 36px;
+  }
 
-    .page {
-        padding: 20px 10px;
-    }
+  .profileHeader {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 15px;
+    min-height: auto;
+    padding: 24px 20px;
+    border-radius: 17px;
+  }
 
-    .formGrid {
-        grid-template-columns: 1fr;
-    }
+  .avatarBadge {
+    width: 62px;
+    height: 62px;
+    flex-basis: 62px;
+    font-size: 1.2rem;
+  }
 
+  .identity {
+    padding-top: 3px;
+  }
+
+  .identity h1 {
+    font-size: 1.3rem;
+  }
+
+  .badgeActive {
+    align-self: center;
+    margin: 0 0 0 77px;
+  }
+
+  .card {
+    margin-top: 18px;
+    padding: 22px 18px;
+    border-radius: 15px;
+  }
+
+  .cardHeading {
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .companyGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .wideField {
+    grid-column: auto;
+  }
+
+  .editActions {
+    flex-direction: column;
+  }
+
+  .saveButton,
+  .cancelButton {
+    width: 100%;
+  }
+
+  .apiFeedback button {
+    display: flex;
+    margin: 10px 0 0;
+  }
 }

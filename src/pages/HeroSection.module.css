@@ -9,6 +9,7 @@ html {
 }
 
 .container {
+  isolation: isolate;
   position: relative;
 
   width: 100%;
@@ -19,6 +20,13 @@ html {
   color: var(--cor-primaria4);
 
   overflow-x: hidden;
+}
+
+.topDecorative,
+.bottomDecorative,
+.topLine,
+.bottomLine {
+  pointer-events: none;
 }
 
 .hero {
