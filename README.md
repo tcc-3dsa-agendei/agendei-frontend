@@ -6,13 +6,14 @@ O objetivo do Agendei.com é facilitar a gestão de agendamentos, clientes e inf
 
 ## Funcionalidades
 
-- **Dashboard**: visão geral do negócio com indicadores e acesso rápido às principais funcionalidades.
-- **Gestão de Agendamentos**: crie, edite e gerencie agendamentos de forma prática e rápida.
-- **Criação de Agenda em etapas**: configure informações básicas, dias e horários, serviços e revise antes de finalizar.
-- **Gestão de Clientes**: mantenha todas as informações dos seus clientes organizadas, com busca e filtros por status.
-- **Perfil do Usuário**: visualize e edite suas informações pessoais e da empresa.
-- **Cadastro e Login**: criação de conta com validação dos dados via Zod e máscaras automáticas para telefone e CNPJ.
-- **Relatórios**: acompanhe estatísticas e indicadores importantes do seu negócio.
+- Cadastro e login com Better Auth, CNPJ validado e rotas protegidas.
+- Gestão do expediente semanal, serviços e agendamentos da conta autenticada.
+- Reserva com calendário, cálculo de disponibilidade e confirmação persistida.
+- Consulta de clientes/reservas com filtros, estatísticas e transições de status.
+- Perfil com dados da sessão e consulta cadastral ao OpenCNPJ.
+
+Veja [INTEGRACAO.md](INTEGRACAO.md) para configuração conjunta com o backend,
+regras de contrato, testes e limites da implementação.
 
 ## Tecnologias
 
@@ -44,7 +45,7 @@ cp .env.example .env
 
 | Variável                     | Descrição                                        |
 | ---------------------------- | ------------------------------------------------ |
-| `VITE_BETTER_AUTH_CLIENT_URL` | URL base do servidor de autenticação (better-auth) |
+| `VITE_BACKEND_URL` | URL base do backend (ex.: `http://localhost:3333`) |
 
 ## Instalando o pnpm
 
@@ -74,6 +75,9 @@ pnpm --version
 ```
 
 ## Como executar
+
+O frontend usa Node.js. Para executar a suíte de testes, use Node.js 24 ou superior
+e `pnpm test` (ou `node --run test`).
 
 Clone o repositório e acesse a pasta do projeto:
 
@@ -150,9 +154,11 @@ agendei-frontend/
 | `/home`         | Início                        |
 | `/agenda`       | Agendas                       |
 | `/nova-agenda`  | Criação de nova agenda        |
+| `/servicos`     | Gestão de serviços            |
+| `/agendar`      | Agendamento autenticado       |
 | `/clientes`     | Clientes                      |
 | `/profile`      | Perfil do usuário             |
-| `/about`        | Sobre nós                     |
+| `/about`        | Redireciona para `/home`       |
 
 ## Equipe
 
