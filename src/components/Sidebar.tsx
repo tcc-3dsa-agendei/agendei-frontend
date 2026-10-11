@@ -15,7 +15,7 @@ import styles from "./Sidebar.module.css"
 export function Sidebar({ mobileOpen = false, onClose }: { mobileOpen?: boolean; onClose?: () => void }) {
   const navigate = useNavigate()
   const { pathname } = useLocation()
-  const agendaActive = ["/agenda", "/nova-agenda", "/agendar"].includes(pathname)
+  const agendaActive = ["/agenda", "/nova-agenda"].includes(pathname)
   const { data } = auth.useSession()
   const [userMenuOpen, setUserMenuOpen] = useState(false)
   const sidebar = useRef<HTMLElement>(null)

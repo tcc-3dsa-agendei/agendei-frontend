@@ -230,6 +230,10 @@
 .actions {
   gap: 12px;
 }
+.slotGroup {
+  border: 0;
+  padding: 0;
+}
 .card > .actions,
 .form > .actions {
   margin-top: 16px;

@@ -71,8 +71,8 @@ export function Clients() {
             <h1>Clientes e reservas</h1>
             <p>Consulte os atendimentos e atualize a situação das reservas.</p>
           </div>
-          <Link className={styles.button} to="/agendar">
-            Novo agendamento
+          <Link className={styles.button} to="/agenda">
+            Ver link de agendamento
           </Link>
         </header>
         {resource.data && !invalidRange && (

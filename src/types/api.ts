@@ -31,6 +31,7 @@ export interface Appointment {
   userId: string
   serviceId: string
   customerName: string
+  customerEmail: string | null
   customerPhone: string
   startAt: string
   endAt: string
@@ -42,13 +43,24 @@ export interface Appointment {
 export interface AppointmentWithService extends Appointment {
   service: Pick<Service, "id" | "name" | "description" | "durationInMinutes" | "price">
 }
-export type CreateAppointmentInput = Pick<
-  Appointment,
-  "serviceId" | "customerName" | "customerPhone" | "startAt"
-> & {
-  notes?: string | null
+export type UpdateAppointmentInput = Partial<
+  Pick<Appointment, "serviceId" | "customerName" | "customerPhone" | "startAt" | "notes">
+> & { customerEmail?: string }
+export interface PublicCompany {
+  name: string
+  timeZone: string
+  schedules: Pick<Schedule, "weekDay" | "startTime" | "endTime">[]
+  services: Pick<Service, "id" | "name" | "description" | "durationInMinutes" | "price">[]
 }
-export type UpdateAppointmentInput = Partial<CreateAppointmentInput>
+export interface BookingSlot {
+  startAt: string
+  endAt: string
+}
+export type PublicAppointmentInput = Pick<
+  Appointment,
+  "serviceId" | "startAt" | "customerName" | "customerPhone"
+> & { customerEmail: string; notes?: string | null }
+export type PublicAppointment = Pick<Appointment, "id" | "serviceId" | "startAt" | "endAt" | "status">
 export interface Pagination {
   page: number
   pageSize: number

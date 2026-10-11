@@ -2,7 +2,8 @@ import assert from "node:assert/strict"
 import { afterEach, describe, mock, test } from "node:test"
 
 mock.module("../src/env.ts", { namedExports: { env: { VITE_BACKEND_URL: "http://localhost:3333/" } } })
-const { ApiError, apiFetch, appointmentsApi, schedulesApi, servicesApi } = await import("../src/lib/api.ts")
+const { ApiError, apiFetch, appointmentsApi, bookingLinkApi, publicBookingApi, schedulesApi, servicesApi } =
+  await import("../src/lib/api.ts")
 const originalFetch = globalThis.fetch
 const calls: {
   url: string
@@ -21,6 +22,50 @@ afterEach(() => {
   calls.length = 0
 })
 describe("contratos HTTP", () => {
+  test("consulta o link com sessão e os dados públicos sem cookies", async () => {
+    respond([
+      Response.json({ url: "https://example.com/agendar/company" }),
+      Response.json({
+        company: { name: "Empresa", timeZone: "America/Sao_Paulo", schedules: [], services: [] }
+      }),
+      Response.json({ slots: [{ startAt: "2030-01-07T12:07:00.000Z", endAt: "2030-01-07T12:37:00.000Z" }] })
+    ])
+    assert.equal((await bookingLinkApi.get()).url, "https://example.com/agendar/company")
+    assert.equal(calls[0].init?.credentials, "include")
+    assert.equal((await publicBookingApi.company("company")).company.name, "Empresa")
+    assert.equal(calls[1].init?.credentials, "omit")
+    assert.equal(
+      (await publicBookingApi.availability("company", "service", "2030-01-07")).slots[0].startAt,
+      "2030-01-07T12:07:00.000Z"
+    )
+    assert.equal(new URL(calls[2].url).searchParams.get("serviceId"), "service")
+    assert.equal(new URL(calls[2].url).searchParams.get("date"), "2030-01-07")
+    assert.equal(calls[2].init?.credentials, "omit")
+  })
+  test("cria apenas pela rota pública com o instante original e corpo estrito", async () => {
+    respond([Response.json({ appointment: { id: "reservation", status: "scheduled" } }, { status: 201 })])
+    const input = {
+      serviceId: "service",
+      startAt: "2030-01-07T12:07:00.000Z",
+      customerName: "Maria",
+      customerEmail: "maria@example.com",
+      customerPhone: "11987654321",
+      notes: null
+    }
+    assert.equal((await publicBookingApi.create("company", input)).appointment.id, "reservation")
+    assert.equal(calls[0].url, "http://localhost:3333/public/companies/company/appointments")
+    assert.equal(calls[0].init?.credentials, "omit")
+    assert.equal(calls[0].init?.method, "POST")
+    assert.deepEqual(JSON.parse(String(calls[0].init?.body)), input)
+  })
+  test("edita e exclui reservas pela API administrativa", async () => {
+    respond([Response.json({ appointment: { id: "reservation" } }), new Response(null, { status: 204 })])
+    await appointmentsApi.update("reservation", { customerEmail: "novo@example.com" })
+    assert.equal(calls[0].init?.method, "PUT")
+    assert.equal(calls[0].init?.body, '{"customerEmail":"novo@example.com"}')
+    assert.equal(await appointmentsApi.delete("reservation"), undefined)
+    assert.equal(calls[1].init?.method, "DELETE")
+  })
   test("envia cookies, JSON e apenas campos do contrato na criação", async () => {
     respond([Response.json({ schedule: { id: "server-id" } }, { status: 201 })])
     const body = { weekDay: 2, startTime: "09:00", endTime: "18:00" }

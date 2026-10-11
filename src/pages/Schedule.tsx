@@ -2,6 +2,7 @@ import { type FormEvent, useCallback, useState } from "react"
 import { Link } from "react-router-dom"
 import { ApiFeedback } from "@/components/ApiFeedback"
 import { AppointmentTable } from "@/components/AppointmentTable"
+import { BookingLinkPanel } from "@/components/BookingLinkPanel"
 import { useApiData } from "@/hooks/use-api-data"
 import { useInterfaceFocus } from "@/hooks/use-interface-focus"
 import { MainLayout } from "@/layout/MainLayout"
@@ -20,6 +21,7 @@ export function Schedule() {
   const [editing, setEditing] = useState<ScheduleModel | null>(null)
   const editor = useInterfaceFocus<HTMLFormElement>(editing, "input")
   const [message, setMessage] = useState("")
+  const [linkRevision, setLinkRevision] = useState(0)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState("")
   const [invalidTime, setInvalidTime] = useState(false)
@@ -44,6 +46,7 @@ export function Schedule() {
       setEditing(null)
       setMessage("Expediente salvo.")
       schedules.reload()
+      setLinkRevision((revision) => revision + 1)
     } catch (error) {
       setError(errorMessage(error))
     } finally {
@@ -59,6 +62,7 @@ export function Schedule() {
       await schedulesApi.delete(schedule.id)
       setMessage("Expediente excluído.")
       schedules.reload()
+      setLinkRevision((revision) => revision + 1)
     } catch (error) {
       setError(errorMessage(error))
     } finally {
@@ -77,9 +81,6 @@ export function Schedule() {
             <Link className={styles.button} to="/nova-agenda">
               + Novo expediente
             </Link>
-            <Link className={styles.button} to="/agendar">
-              Agendar atendimento
-            </Link>
           </div>
         </header>
         {error && (
@@ -92,6 +93,7 @@ export function Schedule() {
             {message}
           </p>
         )}
+        <BookingLinkPanel key={linkRevision} />
         <section className={styles.card}>
           <h2>Expediente semanal</h2>
           <ApiFeedback loading={schedules.loading} error={schedules.error} retry={schedules.reload} />

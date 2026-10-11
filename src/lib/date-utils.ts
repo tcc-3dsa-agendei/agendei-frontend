@@ -1,6 +1,19 @@
 import type { Appointment, Schedule } from "@/types/api"
 
 export const TIME_ZONE = "America/Sao_Paulo"
+export function calendarDateInZone(timeZone: string, date = new Date()) {
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat("en-US", {
+      timeZone,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    })
+      .formatToParts(date)
+      .map(({ type, value }) => [type, value])
+  )
+  return `${parts.year}-${parts.month}-${parts.day}`
+}
 export const weekDays = [
   "Domingo",
   "Segunda-feira",

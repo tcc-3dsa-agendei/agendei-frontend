@@ -28,8 +28,8 @@ export function Home() {
               </p>
 
               <div className={styles.ctaGroup}>
-                <button type="button" className={styles.btnPrimary} onClick={() => navigate("/agendar")}>
-                  Agendar atendimento
+                <button type="button" className={styles.btnPrimary} onClick={() => navigate("/agenda")}>
+                  Link de agendamento
                 </button>
 
                 <button type="button" className={styles.btnSecondary} onClick={() => navigate("/agenda")}>

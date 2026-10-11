@@ -8,12 +8,13 @@ O objetivo do Agendei.com é facilitar a gestão de agendamentos, clientes e inf
 
 - Cadastro e login com Better Auth, CNPJ validado e rotas protegidas.
 - Gestão do expediente semanal, serviços e agendamentos da conta autenticada.
-- Reserva com calendário, cálculo de disponibilidade e confirmação persistida.
-- Consulta de clientes/reservas com filtros, estatísticas e transições de status.
+- Link compartilhável e reserva pública sem login, com horários fornecidos pelo backend.
+- Consulta e edição de reservas com filtros, estatísticas e transições de status.
 - Perfil com dados da sessão e consulta cadastral ao OpenCNPJ.
 
-Veja [INTEGRACAO.md](INTEGRACAO.md) para configuração conjunta com o backend,
-regras de contrato, testes e limites da implementação.
+O novo fluxo público exige o backend com a migration `0005_appointment-customer-email.sql` aplicada.
+Na publicação, configure `FRONTEND_URL` e CORS no backend e encaminhe acessos diretos a
+`/agendar/:companyId` para o `index.html` do frontend.
 
 ## Tecnologias
 
@@ -155,7 +156,7 @@ agendei-frontend/
 | `/agenda`       | Agendas                       |
 | `/nova-agenda`  | Criação de nova agenda        |
 | `/servicos`     | Gestão de serviços            |
-| `/agendar`      | Agendamento autenticado       |
+| `/agendar/:companyId` | Agendamento público, sem login |
 | `/clientes`     | Clientes                      |
 | `/profile`      | Perfil do usuário             |
 | `/about`        | Redireciona para `/home`       |

@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { appointmentsApi, errorMessage } from "@/lib/api"
+import { AppointmentEditor } from "@/components/AppointmentEditor"
+import { ApiError, appointmentsApi, errorMessage } from "@/lib/api"
 import { allowedStatuses, statusLabels } from "@/lib/appointment-status"
 import { formatDate, formatTime } from "@/lib/date-utils"
 import styles from "@/pages/Management.module.css"
@@ -16,6 +17,8 @@ export function AppointmentTable({
 }) {
   const [busy, setBusy] = useState<string | null>(null)
   const [error, setError] = useState("")
+  const [editing, setEditing] = useState<string | null>(null)
+  const selected = appointments.find((item) => item.id === editing)
   async function changeStatus(id: string, status: AppointmentStatus) {
     setBusy(id)
     setError("")
@@ -24,6 +27,20 @@ export function AppointmentTable({
       onChange()
     } catch (error) {
       setError(errorMessage(error))
+      if (error instanceof ApiError && error.status === 409) onChange()
+    } finally {
+      setBusy(null)
+    }
+  }
+  async function remove(id: string) {
+    if (!window.confirm("Excluir esta reserva?")) return
+    setBusy(id)
+    setError("")
+    try {
+      await appointmentsApi.delete(id)
+      onChange()
+    } catch (cause) {
+      setError(errorMessage(cause))
     } finally {
       setBusy(null)
     }
@@ -53,6 +70,7 @@ export function AppointmentTable({
                 <td>
                   <strong>{appointment.customerName}</strong>
                   <small>{appointment.customerPhone}</small>
+                  <small>{appointment.customerEmail ?? "E-mail não informado"}</small>
                   {appointment.notes && <small>{appointment.notes}</small>}
                 </td>
                 <td>{appointment.service.name}</td>
@@ -69,6 +87,13 @@ export function AppointmentTable({
                 </td>
                 <td>
                   <div className={styles.actions}>
+                    <button
+                      type="button"
+                      className={styles.secondary}
+                      disabled={busy !== null}
+                      onClick={() => setEditing(appointment.id)}>
+                      Editar
+                    </button>
                     {allowedStatuses(appointment).map((status) => (
                       <button
                         type="button"
@@ -80,6 +105,13 @@ export function AppointmentTable({
                       </button>
                     ))}
                     {busy === appointment.id && <span role="status">Salvando...</span>}
+                    <button
+                      type="button"
+                      className={styles.danger}
+                      disabled={busy !== null}
+                      onClick={() => void remove(appointment.id)}>
+                      Excluir
+                    </button>
                   </div>
                 </td>
               </tr>
@@ -88,6 +120,19 @@ export function AppointmentTable({
         </table>
         {!appointments.length && <p role="status">{emptyMessage}</p>}
       </section>
+      {selected && (
+        <section className={styles.card} aria-label="Editar reserva">
+          <AppointmentEditor
+            key={selected.id}
+            appointment={selected}
+            onSaved={() => {
+              setEditing(null)
+              onChange()
+            }}
+            onCancel={() => setEditing(null)}
+          />
+        </section>
+      )}
     </>
   )
 }

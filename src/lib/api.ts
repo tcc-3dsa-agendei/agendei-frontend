@@ -4,12 +4,15 @@ import type {
   AppointmentQuery,
   AppointmentStatus,
   AppointmentWithService,
-  CreateAppointmentInput,
+  BookingSlot,
   CreateScheduleInput,
   CreateServiceInput,
   PageQuery,
   PaginatedAppointmentsResponse,
   PaginatedServicesResponse,
+  PublicAppointment,
+  PublicAppointmentInput,
+  PublicCompany,
   Schedule,
   Service,
   UpdateAppointmentInput,
@@ -36,8 +39,11 @@ const errorMessages: Record<number, string> = {
 export const errorMessage = (error: unknown) =>
   error instanceof Error ? error.message : "Não foi possível concluir a operação."
 
-type ApiInit = Omit<RequestInit, "body"> & { body?: unknown }
-export async function apiFetch<T>(path: string, { body, ...init }: ApiInit = {}): Promise<T> {
+type ApiInit = Omit<RequestInit, "body"> & { body?: unknown; public?: boolean }
+export async function apiFetch<T>(
+  path: string,
+  { body, public: isPublic, ...init }: ApiInit = {}
+): Promise<T> {
   const headers = new Headers(init.headers)
   if (body !== undefined) headers.set("Content-Type", "application/json")
   let response: Response
@@ -45,7 +51,7 @@ export async function apiFetch<T>(path: string, { body, ...init }: ApiInit = {})
     response = await fetch(`${env.VITE_BACKEND_URL.replace(/\/$/, "")}${path}`, {
       ...init,
       headers,
-      credentials: "include",
+      credentials: isPublic ? "omit" : "include",
       body: body === undefined ? undefined : JSON.stringify(body)
     })
   } catch (error) {
@@ -54,7 +60,7 @@ export async function apiFetch<T>(path: string, { body, ...init }: ApiInit = {})
   }
   if (!response.ok) {
     const result = await response.json().catch(() => null)
-    if (response.status === 401 && typeof window !== "undefined") {
+    if (!isPublic && response.status === 401 && typeof window !== "undefined") {
       window.dispatchEvent(new Event(SESSION_EXPIRED_EVENT))
     }
     throw new ApiError(
@@ -103,8 +109,6 @@ export const servicesApi = {
 export const appointmentsApi = {
   list: (query: AppointmentQuery = {}, signal?: AbortSignal) =>
     apiFetch<PaginatedAppointmentsResponse>(`/appointments${queryString(query)}`, { signal }),
-  create: (body: CreateAppointmentInput) =>
-    apiFetch<{ appointment: Appointment }>("/appointments", { method: "POST", body }),
   update: (id: string, body: UpdateAppointmentInput) =>
     apiFetch<{ appointment: Appointment }>(`/appointments/${id}`, { method: "PUT", body }),
   updateStatus: (id: string, status: AppointmentStatus) =>
@@ -124,4 +128,24 @@ export const appointmentsApi = {
       if (!result.pagination.hasNext) return items
     }
   }
+}
+export const bookingLinkApi = {
+  get: (signal?: AbortSignal) => apiFetch<{ url: string }>("/booking-link", { signal })
+}
+export const publicBookingApi = {
+  company: (companyId: string, signal?: AbortSignal) =>
+    apiFetch<{ company: PublicCompany }>(`/public/companies/${encodeURIComponent(companyId)}`, {
+      public: true,
+      signal
+    }),
+  availability: (companyId: string, serviceId: string, date: string, signal?: AbortSignal) =>
+    apiFetch<{ slots: BookingSlot[] }>(
+      `/public/companies/${encodeURIComponent(companyId)}/availability?${new URLSearchParams({ serviceId, date })}`,
+      { public: true, signal }
+    ),
+  create: (companyId: string, body: PublicAppointmentInput) =>
+    apiFetch<{ appointment: PublicAppointment }>(
+      `/public/companies/${encodeURIComponent(companyId)}/appointments`,
+      { public: true, method: "POST", body }
+    )
 }

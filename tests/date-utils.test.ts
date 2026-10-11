@@ -5,6 +5,7 @@ import {
   addDays,
   availableSlots,
   businessDate,
+  calendarDateInZone,
   dayRange,
   formatTime,
   toBusinessISO
@@ -14,6 +15,11 @@ const date = "2026-10-06"
 const schedule = { weekDay: 2, startTime: "09:00", endTime: "11:00" }
 const now = Date.parse("2026-10-06T08:00:00-03:00")
 describe("datas e disponibilidade", () => {
+  test("a data pública usa o fuso da empresa, não o do navegador", () => {
+    const instant = new Date("2030-01-07T01:00:00Z")
+    assert.equal(calendarDateInZone("America/Sao_Paulo", instant), "2030-01-06")
+    assert.equal(calendarDateInZone("Asia/Tokyo", instant), "2030-01-07")
+  })
   test("converte horário de São Paulo com precisão de minutos", () => {
     assert.equal(toBusinessISO(date, "14:30"), "2026-10-06T14:30:00-03:00")
     assert.equal(formatTime("2026-10-06T17:30:00Z"), "14:30")

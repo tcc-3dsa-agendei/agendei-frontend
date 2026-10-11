@@ -21,7 +21,14 @@ mock.module("../src/lib/auth.ts", {
     auth: { useSession: () => ({ ...session, refetch: () => Promise.resolve() }) }
   }
 })
-mock.module("../src/lib/api.ts", { namedExports: { SESSION_EXPIRED_EVENT: "agendei:session-expired" } })
+mock.module("../src/lib/api.ts", {
+  namedExports: {
+    SESSION_EXPIRED_EVENT: "agendei:session-expired",
+    ApiError: class extends Error {},
+    errorMessage: String,
+    publicBookingApi: {}
+  }
+})
 const { ProtectedRoute } = await import("../src/components/ProtectedRoute.tsx")
 let privateRenders = 0
 function PrivatePage() {
