@@ -1,0 +1,385 @@
+.page {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  min-height: 100%;
+
+  padding: 25px;
+
+  box-sizing: border-box;
+
+  background: linear-gradient(
+      90deg,
+      var(--cor-secundaria2) 50%,
+      var(--cor-secundaria3) 100%
+    );
+
+  isolation: isolate;
+}
+
+.page::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 170px;
+
+  background: linear-gradient(
+  90deg,
+  var(--cor-primaria5) 0%,
+  var(--cor-primaria3) 100%
+);
+
+  z-index: -1;
+}
+
+
+
+.statistics {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 14px;
+
+  width: 100%;
+}
+
+.statCard {
+  background-color: var(--cor-secundaria1);
+
+  border-radius: 12px;
+
+  padding: 18px;
+
+  min-height: 90px;
+
+  box-sizing: border-box;
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.statCard h2 {
+  margin: 0 0 5px;
+
+  font-size: 28px;
+  font-weight: var(--peso-bold);
+
+  color: var(--cor-primaria3);
+}
+
+.statCard p {
+  margin: 0;
+
+  font-size: var(--texto-sm);
+
+  color: #999999;
+}
+
+
+
+
+.tableCard {
+  flex: 1;
+
+  width: 100%;
+
+  background-color: var(--cor-secundaria1);
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+
+
+
+.filters {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 14px 16px;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+.search {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  width: 280px;
+
+  padding: 8px 12px;
+
+  background-color: #f7f7f7;
+
+  border: 1px solid #e5e5e5;
+
+  border-radius: 8px;
+}
+
+.search span {
+  font-size: 17px;
+
+  color: #999999;
+}
+
+.search input {
+  width: 100%;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  font-size: var(--texto-sm);
+
+  color: #333333;
+}
+
+.search input::placeholder {
+  color: #aaaaaa;
+}
+
+
+
+
+.filterButtons {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.filterButtons button,
+.filterButtons select {
+  height: 36px;
+
+  padding: 0 14px;
+
+  background-color: var(--cor-secundaria1);
+
+  border: 1px solid #dddddd;
+
+  border-radius: 8px;
+
+  font-family: inherit;
+
+  font-size: var(--texto-sm);
+
+  color: #444444;
+
+  cursor: pointer;
+}
+
+.filterButtons button:hover,
+.filterButtons select:hover {
+  border-color: var(--cor-primaria3);
+
+  background-color: #f7faf9;
+}
+
+
+
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+}
+
+thead {
+  height: 40px;
+}
+
+th {
+  padding: 10px 14px;
+
+  text-align: left;
+
+  font-size: var(--texto-sm);
+
+  font-weight: var(--peso-bold);
+
+  color: var(--cor-primaria3);
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+th:first-child {
+  width: 45px;
+}
+
+th:nth-child(2) {
+  width: 20%;
+}
+
+th:nth-child(3) {
+  width: 25%;
+}
+
+th:nth-child(4) {
+  width: 17%;
+}
+
+th:nth-child(5) {
+  width: 12%;
+}
+
+th:nth-child(6) {
+  width: 16%;
+}
+
+
+
+
+tbody tr {
+  height: 59px;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+tbody tr:hover {
+  background-color: #f9fdfb;
+}
+
+td {
+  padding: 8px 14px;
+
+  vertical-align: middle;
+}
+
+
+
+
+.avatar {
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  background-color: #d9e8e4;
+}
+
+
+
+
+td strong {
+  display: block;
+
+  margin-bottom: 2px;
+
+  font-size: var(--texto-sm);
+
+  font-weight: var(--peso-semibold);
+
+  color: #111111;
+}
+
+td span:not(.status) {
+  display: block;
+
+  font-size: var(--texto-pq);
+
+  color: #aaaaaa;
+}
+
+
+
+
+.status {
+  display: inline-block;
+
+  padding: 5px 12px;
+
+  border-radius: 20px;
+
+  background-color: #e6f4f0;
+
+  border: 1px solid #b3ddd3;
+
+  color: #16805f;
+
+  font-size: var(--texto-pq);
+
+  font-weight: var(--peso-semibold);
+}
+
+
+
+
+.empty {
+  padding: 40px;
+
+  text-align: center;
+
+  color: #aaaaaa;
+
+  font-size: var(--texto-sm);
+}
+
+
+
+
+@media (max-width: 1000px) {
+
+  .statistics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  .filterButtons {
+    justify-content: flex-end;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .statistics {
+    grid-template-columns: 1fr;
+  }
+
+  .filterButtons {
+    flex-wrap: wrap;
+  }
+
+  .tableCard {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 800px;
+  }
+
+}

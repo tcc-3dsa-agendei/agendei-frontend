@@ -1,5 +1,5 @@
+import { SetupNavigation } from "./routes/Routes";
+
 export function App() {
-  return (
-    <main></main>
-  )
+  return <SetupNavigation />;
 }
